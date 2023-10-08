@@ -13,16 +13,16 @@ export async function getDogs() {
     return result.rows
 }
 
-export async function getDogs() {
+export async function getDogsByID(id) {
 // Query the database and return all books
     
     // Define the SQL query to get all dogs from the 'doga' table
-    const querySQLText = "SELECT * FROM dogs";
+    const querySQLText = "SELECT * FROM dogs WHERE id = $1";
         
     // Use the pool object to send the query to the database
-    const result = await pool.query(querySQLText);
+    const result = await pool.query(querySQLText, [id]);
     
-    // The rows property of the result object contains the retrieved records
-    return result.rows
+    // The rows property of the result object contains the retrieved record or null if not found
+    return result.rows[0] || null
     
 }
