@@ -13,7 +13,7 @@ export async function getDogs() {
   return result.rows;
 }
 
-export async function getDogsByID(id) {
+export async function getDogByID(id) {
   // Query the database and return all books
 
   // Define the SQL query to get all dogs from the 'doga' table
