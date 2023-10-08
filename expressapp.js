@@ -3,8 +3,8 @@ import express from "express";
 import morgan from "morgan";
 
 // Import the routes.js file
-import dogsroutes from "./dogsroutes.js";
-import ownersroutes from "./ownersroutes.js";
+import { dogsroutes } from "./routes/dogsroutes.js";
+import { ownersroutes } from "./routes/ownersroutes.js";
 
 // Store the created express module in a variable
 export const app = express();
