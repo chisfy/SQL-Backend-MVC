@@ -4,7 +4,7 @@ export async function getOwners() {
   // Query the database and return all owners
 
   // Define the SQL query to get all owners from the 'owners' table
-  const querySQLText = "SELECT * FROM owners";
+  const querySQLText = "SELECT * FROM owners ORDER BY owner_id ASC";
 
   // Use the pool object to send the query to the database
   const result = await pool.query(querySQLText);
@@ -32,7 +32,7 @@ export async function getOwnerssAlphabetical() {
   // Query the database and return all owners in alphabetical order
 
   // Define the SQL query to get all owners from the 'owners' table with a order by clause
-  const querySQLText = "SELECT * FROM owners ORDER BY name ASC";
+  const querySQLText = "SELECT * FROM owners ORDER BY first_name ASC";
 
   // Use the pool object to send the query to the database
   const result = await pool.query(querySQLText);
@@ -42,14 +42,14 @@ export async function getOwnerssAlphabetical() {
 
 }
 
-export async function getOwnerssByName(name) {
+export async function getOwnerssByName(first_name) {
   // Query the database and get an owner by their name
 
   // Define the SQL query to get the owner by name (paramertized query)
-  const querySQLText = "SELECT * FROM owners WHERE name = $1";
+  const querySQLText = "SELECT * FROM owners WHERE first_name = $1";
 
   // Use the pool object to send the query to the database (paramertized query)
-  const result = await pool.query(querySQLText, [name]);
+  const result = await pool.query(querySQLText, [first_name]);
 
   // The rows property of the result object contains the retrieved record or null if not found
   return result.rows;
@@ -93,11 +93,11 @@ export async function addNewOwner(newOwner) {
 
   // Define the SQL query to insert a row into owners by ID from the 'owners' table (paramertized query)
   const queryText =` INSERT INTO owners
-  (name, address, phone_number)
-  VALUES ($1,$2,$3) RETURNING *`;
+  (first_name, last_name, address, phone_number)
+  VALUES ($1,$2,$3,$4) RETURNING *`;
 
   // parameterized large query by putting it in a array storing that in a variable
-  const values = [newOwner.name, newOwner.address, newOwner.phone_number];
+  const values = [newOwner.first_name, newOwner.last_name, newOwner.address, newOwner.phone_number];
   console.log(`values=${values}`); // testing the values 
 
   // Use the pool object to send the query to the database (paramertized query)

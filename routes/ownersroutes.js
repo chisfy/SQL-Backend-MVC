@@ -10,7 +10,7 @@ ownersRoutes.get("/atoz", ownersController.getOwnersAlphabetical);
 
 ownersRoutes.get("/:id", ownersController.getOwnerByID);
 
-ownersRoutes.get("/name/:name", ownersController.getOwnersByName);
+ownersRoutes.get("/firstname/:name", ownersController.getOwnersByName);
 
 ownersRoutes.patch("/:id", ownersController.updateOwnerInformation);
 

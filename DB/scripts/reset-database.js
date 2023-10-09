@@ -26,7 +26,8 @@ async function resetDatabase() {
     await pool.query(`
                 CREATE TABLE owners (
                 owner_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                name TEXT NOT NULL,
+                first_name TEXT NOT NULL,
+                last_name TEXT NOT NULL,
                 address TEXT,
                 phone_number TEXT
                 );
@@ -63,13 +64,13 @@ async function resetDatabase() {
     // seeding owner table
     await pool.query(`
                 INSERT INTO owners
-                (name, address, phone_number)
+                (first_name, last_name, address, phone_number)
                 VALUES
-                ('John Smith', '123 Main Street, London, UK', '020 1234 5678'),
-                ('Sarah Johnson', '456 Elm Avenue, Manchester, UK', '0161 987 6543'),
-                ('David Wilson', '789 Oak Lane, Birmingham, UK', '0121 555 7890'),
-                ('Emily Brown', '101 Pine Road, Edinburgh, UK', '0131 456 7890'),
-                ('Michael Davis', '321 Cedar Street, Cardiff, UK', '029 5555 1234');
+                ('John', 'Smith', '123 Main Street, London, UK', '020 1234 5678'),
+                ('Sarah', 'Johnson', '456 Elm Avenue, Manchester, UK', '0161 987 6543'),
+                ('David', 'Wilson', '789 Oak Lane, Birmingham, UK', '0121 555 7890'),
+                ('Emily', 'Brown', '101 Pine Road, Edinburgh, UK', '0131 456 7890'),
+                ('Michael', 'Davis', '321 Cedar Street, Cardiff, UK', '029 5555 1234');
             `);
     // seeding dog_to_owners table
     await pool.query(`

@@ -4,7 +4,7 @@ export async function getDogs() {
   // Query the database and return all dogs
 
   // Define the SQL query to get all dogs from the 'doga' table
-  const querySQLText = "SELECT * FROM dogs";
+  const querySQLText = "SELECT * FROM dogs ORDER BY dog_id ASC";
 
   // Use the pool object to send the query to the database
   const result = await pool.query(querySQLText);
