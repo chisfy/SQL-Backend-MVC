@@ -61,3 +61,20 @@ export async function deleteOwnerByID(req, res) {
     res.status(200).json({ status: "success", data: specificOwner, msg: "owner removed from database" });
   }
 }
+
+export async function updateOwnerInformation(req, res) {
+  const queryURL = req.params.id;
+  const dataToFill = req.body;
+  const specificOwner = await ownersModel.updateOwnerInformation(queryURL, dataToFill);
+
+  if (!specificOwner) {
+    return res.status(404).json({
+      status: "fail",
+      data: {
+        msg: "No owner matched that ID, cannot be updated",
+      }
+    });
+  } else {
+    res.status(200).json({ status: "success", data: specificOwner, msg: "owner updated in the database" });
+  }
+}

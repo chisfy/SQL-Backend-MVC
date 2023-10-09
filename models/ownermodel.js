@@ -65,3 +65,12 @@ export async function deleteOwnerByID(id) {
   return result.rows[0] || null;
 
 }
+
+export async function updateOwnerInformation(id, newInformation) {
+    const queryText = `UPDATE owners 
+    SET name = $1, address = $2, phone_number = $3 WHERE owner_id = $4 RETURNING *`;
+    const values = [newInformation.name, newInformation.address, newInformation.phone_number, id];
+    const result = await pool.query(queryText, values);
+    return result.rows[0] || null;
+}
+

@@ -13,3 +13,5 @@ dogsRoutes.get("/:id", dogsController.getDogByID);
 dogsRoutes.get("/name/:name", dogsController.getDogsByName);
 
 dogsRoutes.delete("/:id", dogsController.deleteDogByID);
+
+dogsRoutes.patch("/:id", dogsController.updateDogInformation);
