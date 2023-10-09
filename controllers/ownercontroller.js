@@ -10,13 +10,11 @@ export async function getOwnerByID(req, res) {
   const specificOwner = await ownersModel.getOwnerByID(queryURL);
 
   if (!specificOwner) {
-    return res
-      .status(404)
-      .json({
-        status: "fail",
-        data: specificOwner,
-        msg: "No owner matched that ID",
-      });
+    return res.status(404).json({
+      status: "fail",
+      data: specificOwner,
+      msg: "No owner matched that ID",
+    });
   } else {
     res.status(200).json({ status: "success", data: specificOwner });
   }
@@ -38,7 +36,7 @@ export async function getOwnersByName(req, res) {
       status: "fail",
       data: {
         msg: "No owner matched that name",
-      }
+      },
     });
   } else {
     res.status(200).json({ status: "success", data: listOfOwners });
@@ -50,31 +48,44 @@ export async function deleteOwnerByID(req, res) {
   const specificOwner = await ownersModel.deleteOwnerByID(queryURL);
 
   if (!specificOwner) {
-    return res
-      .status(404)
-      .json({
-        status: "fail",
-        data: specificOwner,
-        msg: "No owner matched that ID, cannot be deleted",
-      });
+    return res.status(404).json({
+      status: "fail",
+      data: specificOwner,
+      msg: "No owner matched that ID, cannot be deleted",
+    });
   } else {
-    res.status(200).json({ status: "success", data: specificOwner, msg: "owner removed from database" });
+    res
+      .status(200)
+      .json({
+        status: "success",
+        data: specificOwner,
+        msg: "owner removed from database",
+      });
   }
 }
 
 export async function updateOwnerInformation(req, res) {
   const queryURL = req.params.id;
   const dataToFill = req.body;
-  const specificOwner = await ownersModel.updateOwnerInformation(queryURL, dataToFill);
+  const specificOwner = await ownersModel.updateOwnerInformation(
+    queryURL,
+    dataToFill
+  );
 
   if (!specificOwner) {
     return res.status(404).json({
       status: "fail",
       data: {
         msg: "No owner matched that ID, cannot be updated",
-      }
+      },
     });
   } else {
-    res.status(200).json({ status: "success", data: specificOwner, msg: "owner updated in the database" });
+    res
+      .status(200)
+      .json({
+        status: "success",
+        data: specificOwner,
+        msg: "owner updated in the database",
+      });
   }
 }

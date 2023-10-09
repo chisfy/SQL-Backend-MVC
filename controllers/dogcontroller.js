@@ -38,7 +38,7 @@ export async function getDogsByName(req, res) {
       status: "fail",
       data: {
         msg: "No dog matched that name",
-      }
+      },
     });
   } else {
     res.status(200).json({ status: "success", data: listOfDogs });
@@ -57,24 +57,38 @@ export async function deleteDogByID(req, res) {
       msg: "No dog matched that ID, cannot be deleted",
     });
   } else {
-    res.status(200).json({ status: "success", data: specificDog, msg: "dog removed from database" });
+    res
+      .status(200)
+      .json({
+        status: "success",
+        data: specificDog,
+        msg: "dog removed from database",
+      });
   }
 }
 
 export async function updateDogInformation(req, res) {
   const queryURL = req.params.id;
   const dataToFill = req.body;
-  const specificDog = await dogsModel.updateDogInformation(queryURL, dataToFill);
+  const specificDog = await dogsModel.updateDogInformation(
+    queryURL,
+    dataToFill
+  );
 
   if (!specificDog) {
     return res.status(404).json({
       status: "fail",
       data: {
         msg: "No dog matched that ID, cannot be updated",
-      }
+      },
     });
   } else {
-    res.status(200).json({ status: "success", data: specificDog, msg: "dog updated in the database" });
+    res
+      .status(200)
+      .json({
+        status: "success",
+        data: specificDog,
+        msg: "dog updated in the database",
+      });
   }
-
 }
