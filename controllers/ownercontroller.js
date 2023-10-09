@@ -108,3 +108,33 @@ export async function getOwnersAlphabeticalSurname(req, res) {
   console.log(req.params); // testing path is correct
   res.status(200).json({ status: "success", data: owners });
 }
+
+export async function assignOwnerToDogs(req, res) {
+  const { owner_id, dog_id } = req.query
+  console.log(req.query);
+  const assignID = await ownersModel.assignOwnerToDogs({owner_id,dog_id});
+
+  if (!owner_id) {
+    return res.status(404).json({
+      status: "fail",
+      data: {
+        msg: "No owner ID stated; needs both Owner ID and Dog iD to assign ownership",
+      },
+    });
+  } else  if (!dog_id) {
+    return res.status(404).json({
+      status: "fail",
+      data: {
+        msg: "No dog ID stated; needs both Owner ID and Dog iD to assign ownership",
+      },
+    });
+  } else {
+  res
+  .status(200)
+  .json({
+    status: "success",
+    data: assignID,
+    msg: "owner assigned to the dog",
+  });
+}
+}

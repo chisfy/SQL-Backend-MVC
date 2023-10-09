@@ -75,10 +75,10 @@ export async function updateOwnerInformation(id, newInformation) {
 
   // Define the SQL query to update owner by ID from the 'owners' table (paramertized query
   const queryText = `UPDATE owners 
-  SET name = $1, address = $2, phone_number = $3 WHERE owner_id = $4 RETURNING *`;
+  SET first_name = $1, last_name = $2, address = $3, phone_number = $4 WHERE owner_id = $5 RETURNING *`;
 
   // parameterized large query by putting it in a array storing that in a variable
-  const values = [newInformation.name, newInformation.address, newInformation.phone_number, id];
+  const values = [newInformation.first_name, newInformation.last_name, newInformation.address, newInformation.phone_number, id];
     
   // Use the pool object to send the query to the database (paramertized query)
   const result = await pool.query(queryText, values);
@@ -119,5 +119,17 @@ export async function getOwnerssAlphabeticalSurname() {
 
   // The rows property of the result object contains the retrieved records
   return result.rows;
+
+}
+
+export async function assignOwnerToDogs(ids) {
+
+  const querySQLText = `UPDATE dogs SET owner_id = $1 WHERE dog_id = $2 RETURNING *`;
+
+  const values = [ids.owner_id, ids.dog_id];
+
+  const result = await pool.query(querySQLText, values);
+
+  return result.rows[0] || null
 
 }

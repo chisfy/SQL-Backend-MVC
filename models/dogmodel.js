@@ -87,7 +87,7 @@ export async function addNewDog(newDog) {
   // Query the database to insert a dog into the dogs table
 
   // Define the SQL query to insert a row into owners by ID from the 'owners' table (paramertized query)
-  const queryText =` INSERT INTO dogs
+  const queryText = `INSERT INTO dogs
   (name, age, date_of_birth, size, breed)
   VALUES ($1,$2,$3,$4,$5) RETURNING *`;
 
@@ -107,12 +107,12 @@ export async function getDogsBySize(size) {
   //Query the database and find a dog by their id in the path url
   
   // Define the SQL query to get all dogs from the 'dogs' table according to the size specified(paramertized query)
-  const querySQLText = "SELECT * FROM dogs WHERE size = $1";
+  const querySQLText = `SELECT * FROM dogs WHERE size = $1`;
 
   // Use the pool object to send the query to the database (paramertized query)
   const result = await pool.query(querySQLText, [size]);
 
   // The rows property of the result object contains the retrieved records
   return result.rows;
-  
+
 }
