@@ -92,3 +92,16 @@ export async function updateDogInformation(req, res) {
       });
   }
 }
+
+export async function addNewDog(req, res) {
+  const queryBody = req.body;
+  const newDogAdded = await dogsModel.addNewDog(queryBody);
+  
+  res
+  .status(200)
+  .json({
+    status: "success",
+    data: newDogAdded,
+    msg: "dog added to the database",
+  });
+}

@@ -94,7 +94,7 @@ export async function addNewOwner(newOwner) {
   // Define the SQL query to insert a row into owners by ID from the 'owners' table (paramertized query)
   const queryText =` INSERT INTO owners
   (name, address, phone_number)
-  VALUES ($1,$2,$3,$4,$5) RETURNING *`;
+  VALUES ($1,$2,$3) RETURNING *`;
 
   // parameterized large query by putting it in a array storing that in a variable
   const values = [newOwner.name, newOwner.address, newOwner.phone_number];

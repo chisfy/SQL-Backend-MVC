@@ -15,3 +15,5 @@ ownersRoutes.get("/name/:name", ownersController.getOwnersByName);
 ownersRoutes.patch("/:id", ownersController.updateOwnerInformation);
 
 ownersRoutes.delete("/:id", ownersController.deleteOwnerByID);
+
+ownersRoutes.post("/", ownersController.addNewOwner);

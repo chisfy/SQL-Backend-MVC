@@ -89,3 +89,17 @@ export async function updateOwnerInformation(req, res) {
       });
   }
 }
+
+export async function addNewOwner(req, res) {
+  const queryBody = req.body;
+  const newOwnerAdded = await ownersModel.addNewOwner(queryBody);
+  
+  res
+  .status(200)
+  .json({
+    status: "success",
+    data: newOwnerAdded,
+    msg: "owner added to the database",
+  });
+}
+
