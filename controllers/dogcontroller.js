@@ -105,3 +105,20 @@ export async function addNewDog(req, res) {
     msg: "dog added to the database",
   });
 }
+
+export async function getDogsBSize(req, res) {
+  const queryURL = req.params.size;
+  console.log(req.params);
+  const listOfDogs = await dogsModel.getDogsBySize(queryURL);
+
+  if (queryURL != 'Small' && queryURL != 'Medium' && queryURL != 'Large') {
+    return res.status(404).json({
+      status: "fail",
+      data: {
+        msg: "No dog matched that size; choose from Small, Medium or Large",
+      }
+    });
+  } else {
+    res.status(200).json({ status: "success", data: listOfDogs });
+  }
+}

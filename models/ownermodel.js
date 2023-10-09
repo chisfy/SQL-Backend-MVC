@@ -29,7 +29,7 @@ export async function getOwnerByID(id) {
 }
 
 export async function getOwnerssAlphabetical() {
-  // Query the database and return all owners in alphabetical order
+  // Query the database and return all owners in alphabetical order by first name
 
   // Define the SQL query to get all owners from the 'owners' table with a order by clause
   const querySQLText = "SELECT * FROM owners ORDER BY first_name ASC";
