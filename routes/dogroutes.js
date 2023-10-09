@@ -11,3 +11,5 @@ dogsRoutes.get("/atoz", dogsController.getDogsAlphabetical);
 dogsRoutes.get("/:id", dogsController.getDogByID);
 
 dogsRoutes.get("/name/:name", dogsController.getDogsByName);
+
+dogsRoutes.delete("/:id", dogsController.deleteDogByID);

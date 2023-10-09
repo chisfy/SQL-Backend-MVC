@@ -51,3 +51,17 @@ export async function getDogsByName(name) {
   // The rows property of the result object contains the retrieved record or null if not found
   return result.rows;
 }
+
+export async function deleteDogByID(id) {
+  // Query the database and return all books
+
+  // Define the SQL query to get all dogs from the 'doga' table
+  const querySQLText = "DELETE FROM dogs WHERE dog_id = $1 RETURNING *";
+
+  // Use the pool object to send the query to the database
+  const result = await pool.query(querySQLText, [id]);
+
+  // The rows property of the result object contains the retrieved record or null if not found
+  return result.rows[0] || null;
+
+}

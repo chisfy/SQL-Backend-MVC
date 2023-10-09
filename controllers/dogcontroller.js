@@ -36,10 +36,27 @@ export async function getDogsByName(req, res) {
   if (!listOfDogs.length) {
     return res.status(404).json({
       status: "fail",
-      data: listOfDogs,
-      msg: "No dog matched that name",
+      data: {
+        msg: "No dog matched that name",
+      }
     });
   } else {
     res.status(200).json({ status: "success", data: listOfDogs });
+  }
+}
+
+export async function deleteDogByID(req, res) {
+  const queryURL = req.params.id;
+  console.log(req.params);
+  const specificDog = await dogsModel.deleteDogByID(queryURL);
+
+  if (!specificDog) {
+    return res.status(404).json({
+      status: "fail",
+      data: specificDog,
+      msg: "No dog matched that ID, cannot be deleted",
+    });
+  } else {
+    res.status(200).json({ status: "success", data: specificDog, msg: "dog removed from database" });
   }
 }
