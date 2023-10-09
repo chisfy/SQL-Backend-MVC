@@ -6,4 +6,8 @@ export const dogsRoutes = express.Router();
 
 dogsRoutes.get("/", dogsController.getDogs);
 
+dogsRoutes.get("/atoz", dogsController.getDogsAlphabetical);
+
 dogsRoutes.get("/:id", dogsController.getDogByID);
+
+dogsRoutes.get("/name/:name", dogsController.getDogsByName);
