@@ -21,9 +21,9 @@ export async function getOwnerByID(req, res) {
 }
 
 export async function getOwnersAlphabetical(req, res) {
-  const dogs = await ownersModel.getOwnerssAlphabetical();
+  const owners = await ownersModel.getOwnerssAlphabetical();
   console.log(req.params); // testing path is correct
-  res.status(200).json({ status: "success", data: dogs });
+  res.status(200).json({ status: "success", data: owners });
 }
 
 export async function getOwnersByName(req, res) {
@@ -103,3 +103,8 @@ export async function addNewOwner(req, res) {
   });
 }
 
+export async function getOwnersAlphabeticalSurname(req, res) {
+  const owners = await ownersModel.getOwnerssAlphabeticalSurname();
+  console.log(req.params); // testing path is correct
+  res.status(200).json({ status: "success", data: owners });
+}

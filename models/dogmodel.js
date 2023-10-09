@@ -102,3 +102,4 @@ export async function addNewDog(newDog) {
   return result.rows[0] || null ;
 
 }
+

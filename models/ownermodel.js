@@ -107,3 +107,17 @@ export async function addNewOwner(newOwner) {
   return result.rows[0] || null;
 
 }
+
+export async function getOwnerssAlphabeticalSurname() {
+  // Query the database and return all owners in alphabetical order by surname
+
+  // Define the SQL query to get all owners from the 'owners' table with a order by clause
+  const querySQLText = "SELECT * FROM owners ORDER BY last_name ASC";
+
+  // Use the pool object to send the query to the database
+  const result = await pool.query(querySQLText);
+
+  // The rows property of the result object contains the retrieved records
+  return result.rows;
+
+}

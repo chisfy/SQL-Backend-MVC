@@ -8,6 +8,8 @@ ownersRoutes.get("/", ownersController.getOwners);
 
 ownersRoutes.get("/atoz", ownersController.getOwnersAlphabetical);
 
+ownersRoutes.get("/atozsurname", ownersController.getOwnersAlphabeticalSurname);
+
 ownersRoutes.get("/:id", ownersController.getOwnerByID);
 
 ownersRoutes.get("/firstname/:name", ownersController.getOwnersByName);
