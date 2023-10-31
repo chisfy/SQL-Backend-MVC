@@ -74,12 +74,11 @@ export async function updateOwnerInformation(id, newInformation) {
   // Query the database and edit the the owner by their id in the url
 
   // Define the SQL query to update owner by ID from the 'owners' table (paramertized query
-  const queryText = `UPDATE owners 
+  const queryText = `UPDATE owners
   SET first_name = $1, last_name = $2, address = $3, phone_number = $4 WHERE owner_id = $5 RETURNING *`;
 
   // parameterized large query by putting it in a array storing that in a variable
   const values = [newInformation.first_name, newInformation.last_name, newInformation.address, newInformation.phone_number, id];
-    
   // Use the pool object to send the query to the database (paramertized query)
   const result = await pool.query(queryText, values);
 
@@ -98,7 +97,7 @@ export async function addNewOwner(newOwner) {
 
   // parameterized large query by putting it in a array storing that in a variable
   const values = [newOwner.first_name, newOwner.last_name, newOwner.address, newOwner.phone_number];
-  console.log(`values=${values}`); // testing the values 
+  console.log(`values=${values}`); // testing the values
 
   // Use the pool object to send the query to the database (paramertized query)
   const result = await pool.query(queryText, values);

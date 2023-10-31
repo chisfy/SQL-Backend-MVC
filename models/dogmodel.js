@@ -15,7 +15,6 @@ export async function getDogs() {
 
 export async function getDogByID(id) {
   //Query the database and find an dog by their id in the path url
-  
   // Define the SQL query to get a specific owner from the 'owners' table (paramertized query)
   const querySQLText = "SELECT * FROM dogs WHERE dog_id = $1";
 
@@ -28,7 +27,6 @@ export async function getDogByID(id) {
 
 export async function getDogsAlphabetical() {
   // Query the database and return all dogs in alphabetical order
-
   // Define the SQL query to get all dogs from the 'dogs' table order by name ascending
   const querySQLText = "SELECT * FROM dogs ORDER BY name ASC";
 
@@ -68,14 +66,11 @@ export async function deleteDogByID(id) {
 
 export async function updateDogInformation(id, newInformation) {
   // Query the database and edit the dogs by their id in the url
-  
   // Define the SQL query to update dog by ID from the 'dogs' table (paramertized query)
-  const queryText = `UPDATE dogs 
+  const queryText = `UPDATE dogs
   SET name = $1, age = $2, date_of_birth = $3, size = $4, breed = $5 WHERE dog_id = $6 RETURNING *`;
-  
   // parameterized large query by putting it in a array storing that in a variable
   const values = [newInformation.name, newInformation.age, newInformation.date_of_birth, newInformation.size, newInformation.breed, id];
-  
   // Use the pool object to send the query to the database (paramertized query)
   const result = await pool.query(queryText, values);
 
@@ -93,11 +88,10 @@ export async function addNewDog(newDog) {
 
   // parameterized large query by putting it in a array storing that in a variable
   const values = [newDog.name, newDog.age, newDog.date_of_birth, newDog.size, newDog.breed];
-  console.log(`values=${values}`); // testing the values 
-  
+  console.log(`values=${values}`); // testing the values
+
   // Use the pool object to send the query to the database (paramertized query)
   const result = await pool.query(queryText, values);
-  
   // The rows property of the result object contains the retrieved record or null if not found
   return result.rows[0] || null ;
 
@@ -105,7 +99,6 @@ export async function addNewDog(newDog) {
 
 export async function getDogsBySize(size) {
   //Query the database and find a dog by their id in the path url
-  
   // Define the SQL query to get all dogs from the 'dogs' table according to the size specified(paramertized query)
   const querySQLText = `SELECT * FROM dogs WHERE size = $1`;
 
