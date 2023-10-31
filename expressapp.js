@@ -9,6 +9,8 @@ import { ownersRoutes } from "./routes/ownersroutes.js";
 // Store the created express module in a variable
 export const app = express();
 
+///middleware to use cors
+app.use(cors());
 //Write middle-ware that will console log the stats of each request
 app.use(morgan("dev"));
 // Write middle -ware that will parse all data into JSON
