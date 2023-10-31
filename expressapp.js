@@ -1,6 +1,7 @@
 // Import relative node packages
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 
 // Import the routes.js file
 import { dogsRoutes } from "./routes/dogroutes.js";
