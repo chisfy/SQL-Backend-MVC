@@ -7,7 +7,7 @@ const dogs = await dogtable.json();
 // parsed data
 const dogsArray = await dogs.data;
 
-console.log(dogsArray);
+console.log(await dogsArray);
 
 }
 
@@ -20,4 +20,4 @@ const searchBar = document.querySelector("#search-name");
 
 const submitButton = document.querySelector("#submit");
 
-submitButton.addEventListener("click", test);
+submitButton.addEventListener("click", getdogData);
