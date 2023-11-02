@@ -6,10 +6,30 @@
     <title>Dog Daycare</title>
 </head>
 <body>
-    <button type="button" id="home-page" name="home-page" onclick="window.location.href='home.html'">Home</button>
-    <button type="button" id="search-dogs" name="get-all-dogs" onclick="window.location.href='searchfordogs.html'">More Info</button>
+    <header>
+        <div class="navbar-container">
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</li></a>
+                <li><a href="owners.html">Owners</li></a>
+            </ul>
+        </nav>
+        </div>
+    </header>
+    <button type="button" id="dog-form-add" name="dog-form-add">Add a Dog</button>
+    <button type="button" id="dog-form-delete" name="dog-form-delete">Delete a Dog</button>
     <h3>Dogs in The Daycare</h3>
     <ul id="dog-list"></ul>
+    <label for="search-name">Search for a dog:</label>
+    <input type="text" id="search-name" name="search-name" placeholder="Dog's Name">
+    <button type="button" id="submit" name="submit">Submit</button>
+    <h3 class="info">Dog:-</h3>
+    <p class="owner-name">Name:</p>
+    <p class="dog-age">Age:</p>
+    <p class="dog-dob">Date of Birth:</p>
+    <p class="dog-size">Size:</p>
+    <p class="dog-breed">Breed:</p>
+    <p class="dog-owner">Owner:</p>
     <script src="index.js"></script>
     <script src="alldogs.js"></script>
 </body>
