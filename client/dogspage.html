@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dog Daycare</title>
+    <link href="dogpage.css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -16,8 +17,8 @@
         </nav>
         </div>
     </header>
-    <button type="button" id="dog-form-add" name="dog-form-add">New Dog</button>
-    <button type="button" id="dog-form-delete" name="dog-form-delete">Remove Dog</button>
+    <button type="button" id="dog-form-add" name="dog-form-add" onclick="openForm()">New Dog</button>
+    <button type="button" id="dog-form-delete" name="dog-form-delete">Remove a Dog</button>
     <button type="button" id="dog-form-edit" name="dog-form-edit">Update Details</button>
     <h3>Dogs in The Daycare</h3>
     <ul id="dog-list"></ul>
@@ -32,7 +33,26 @@
     <p class="dog-size">Size:</p>
     <p class="dog-breed">Breed:</p>
     <p class="dog-owner">Owner:</p>
+    <div id="add-overlay" class="overlay">
+        <span class="closebtn" onclick="closeForm()" title="Close Overlay"> &#215 </span>
+    <div class="wrap">
+        <h2>New Dog</h2>
+        <p>Use this form for new dogs joining the daycare</p>
+        <form>
+            <input type="text" placeholder="Enter Name">
+            <input type="text" placeholder="Enter Age">
+            <input type="date"><br>
+            <p>Size:</p>
+            <input type="checkbox">Small
+            <input type="checkbox">Medium
+            <input type="checkbox">Large
+            <input type="text" placeholder="Enter Breed">
+            <button type="submit" id="new-dog-submit" name="new-dog-submit">Submit</button>
+        </form>
+    </div>
+    </div>
     <script src="dog.js"></script>
     <script src="getalldogs.js"></script>
+    <script src="forms.js"></script>
 </body>
 </html>
