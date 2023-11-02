@@ -2,7 +2,7 @@
 async function retrieveAndDisplayAllOwners() {
 // Fetch all dog data
     const response = await fetch(`http://localhost:3000/owners/atoz`);
-  
+
     if (!response.ok) {
         alert("Oh no, no owners could be found try again");
         console.log("Oh no, no owners could be found try again");
@@ -11,11 +11,11 @@ async function retrieveAndDisplayAllOwners() {
     }
     const owners = await response.json();
     const ownerArray = await owners.data;
-  
+
   const ownerList = document.getElementById("owner-list");
   // Clear existing content in the dog list
   ownerList.innerHTML = "";
-  
+
   // Create a list item for each dog and append it to the list
   ownerArray.forEach((owner) => {
     const listItem = document.createElement("li");
@@ -23,7 +23,7 @@ async function retrieveAndDisplayAllOwners() {
     ownerList.appendChild(listItem);
   });
   }
-  
+
   // Add a button to the HTML that triggers the retrieval and display of all dogs
   const getAllOwnersButton = document.querySelector("#getallowners");
   document.addEventListener("DOMContentLoaded", retrieveAndDisplayAllOwners);

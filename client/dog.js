@@ -1,12 +1,34 @@
 let searchBar;
+let dogObject;
 
 async function getandretrieveDogData() {
 searchBar = document.querySelector("#search-name").value;
-const dogObject = await retrieveDogData();
-await updatingElements(dogObject);
+if (!isNaN(searchBar)) {
+  dogObject = await retrieveDogDataByID();
+  updatingElementsbyID(dogObject);
+} else {
+  dogObject = await retrieveDogDataByName();
+  updatingElements(dogObject);
+}}
+
+async function retrieveDogDataByID() {
+  // fetching the path
+  const response = await fetch(`http://localhost:3000/dogs/${searchBar}`);
+  //need to parse the data
+  const dogs = await response.json();
+  // parsed data
+  const dogsArray = await dogs.data;
+
+  if (!response.ok) {
+    alert("Oh no, no dog could be found try again");
+    throw new Error('`Status: ${response.status}`');
+  }
+
+  console.log(dogsArray);
+  return dogsArray;
 }
 
-async function retrieveDogData() {
+async function retrieveDogDataByName() {
   // fetching the path
   const response = await fetch(`http://localhost:3000/dogs/name/${searchBar}`);
   //need to parse the data
@@ -16,14 +38,13 @@ async function retrieveDogData() {
 
   if (!response.ok) {
     alert("Oh no, no dog could be found try again");
-    console.log("Oh no, no dog could be found try again");
-    console.log(`Status: ${response.status}`);
-    return;
+    throw new Error('`Status: ${response.status}`');
   }
 
   console.log(dogsArray);
   return dogsArray;
 }
+
 
 ///now need to manipulate the data to show on the html page
 let dogID = document.querySelector(".dog-id");
@@ -44,6 +65,18 @@ function updatingElements(dogObject) {
     dogSize.textContent = `Size: ${dogObject[0]["size"]}`;
     dogBreed.textContent = `Breed: ${dogObject[0]["breed"]}`;
     dogOwner.textContent = "Owner: Not Assigned";
+}
+
+function updatingElementsbyID(dogObject) {
+  dogID.textContent = `ID: ${dogObject["dog_id"]}`;
+  dogName.textContent = `Name: ${dogObject["name"]}`;
+  dogAge.textContent = `Age: ${dogObject["age"]}`;
+  const dogdob = dogObject["date_of_birth"];
+  const dogBirthday = dogdob.substring(0, 10);
+  dogDob.textContent = `Date of Birth: ${dogBirthday}`;
+  dogSize.textContent = `Size: ${dogObject["size"]}`;
+  dogBreed.textContent = `Breed: ${dogObject["breed"]}`;
+  dogOwner.textContent = "Owner: Not Assigned";
 }
 
 //submit button to trigger the loading of data
