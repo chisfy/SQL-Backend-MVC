@@ -3,7 +3,7 @@ let searchBar;
 async function getandretrieveDogData() {
 searchBar = document.querySelector("#search-name").value;
 const dogObject = await retrieveDogData();
-updatingElements(dogObject);
+await updatingElements(dogObject);
 }
 
 async function retrieveDogData() {
