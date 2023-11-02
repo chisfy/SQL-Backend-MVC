@@ -19,7 +19,7 @@ const dogList = document.getElementById("dog-list");
   // Create a list item for each dog and append it to the list
   dogsArray.forEach((dog) => {
     const listItem = document.createElement("li");
-    listItem.textContent = `${dog.name} (ID: ${dog.dog_id})`;
+    listItem.textContent = `${dog.name}`;
     dogList.appendChild(listItem);
   });
 }

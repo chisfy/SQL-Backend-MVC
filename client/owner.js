@@ -26,12 +26,14 @@ async function retrieveOwnerData() {
 }
 
 ///now need to manipulate the data to show on the html page
+let ownerID = document.querySelector(".owner-id");
 let ownerFirstName = document.querySelector(".owner-first");
 let ownerLastName = document.querySelector(".owner-last");
 let ownerAddress = document.querySelector(".owner-address");
 let ownerPhoneNo = document.querySelector(".owner-phoneno");
 
 function updatingElements(ownerObject) {
+    ownerID.textContent = `ID: ${ownerObject[0]["owner_id"]}`;
     ownerFirstName.textContent = `Name: ${ownerObject[0]["first_name"]}`;
     ownerLastName.textContent = `Age: ${ownerObject[0]["last_name"]}`;
     ownerAddress.textContent = `Address: ${ownerObject[0]["address"]}`;
@@ -40,5 +42,4 @@ function updatingElements(ownerObject) {
 
 //submit button to trigger the loading of data
 const submitButton = document.querySelector("#submit");
-
 submitButton.addEventListener("click", getandretrieveOwnerData);

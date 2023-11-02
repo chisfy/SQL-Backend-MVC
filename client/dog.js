@@ -26,6 +26,7 @@ async function retrieveDogData() {
 }
 
 ///now need to manipulate the data to show on the html page
+let dogID = document.querySelector(".dog-id");
 let dogName = document.querySelector(".dog-name");
 let dogAge = document.querySelector(".dog-age");
 let dogDob = document.querySelector(".dog-dob");
@@ -34,6 +35,7 @@ let dogBreed = document.querySelector(".dog-breed");
 let dogOwner = document.querySelector(".dog-owner");
 
 function updatingElements(dogObject) {
+    dogID.textContent = `ID: ${dogObject[0]["dog_id"]}`;
     dogName.textContent = `Name: ${dogObject[0]["name"]}`;
     dogAge.textContent = `Age: ${dogObject[0]["age"]}`;
     const dogdob = dogObject[0]["date_of_birth"];
