@@ -1,11 +1,11 @@
-let addForm;
+let form;
 
-function openForm() {
-    addForm = document.querySelector(".overlay");
-    addForm.style.display = "block";
+function openForm(formID) {
+    form = document.querySelector(`#${formID}`);
+    form.style.display = "block";
 }
 
-function closeForm() {
-    addForm = document.querySelector(".overlay");
-    addForm.style.display = "none";
+function closeForm(formID) {
+    form = document.querySelector(`#${formID}`);
+    form.style.display = "none";
 }
