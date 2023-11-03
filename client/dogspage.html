@@ -24,7 +24,7 @@
     <ul id="dog-list"></ul>
     <label for="search-name">Find a Dog:</label>
     <input type="text" id="search-name" name="search-name" placeholder="Dog's Name or ID">
-    <button type="button" id="submit" name="submit">Search</button>
+    <button type="button" id="submit-search" name="submit">Search</button>
     <h3 class="info">Dog:-</h3>
     <p class="dog-id">ID:</p>
     <p class="dog-name">Name:</p>
@@ -34,25 +34,28 @@
     <p class="dog-breed">Breed:</p>
     <p class="dog-owner">Owner:</p>
     <div id="add-overlay" class="overlay">
-        <span class="closebtn" onclick="closeForm('add-overlay')" title="Close Overlay"> &#215 </span>
+        <span class="closebtn" onclick="closeForm('add-overlay')" title="Close Overlay"> &#xd7 </span>
     <div class="wrap">
         <h2>New Dog</h2>
         <p>Use this form for new dogs joining the daycare</p>
-        <form>
-            <input type="text" placeholder="Enter Name">
-            <input type="text" placeholder="Enter Age">
-            <input type="date"><br>
-            <p>Size:</p>
-            <input type="checkbox">Small
-            <input type="checkbox">Medium
-            <input type="checkbox">Large
-            <input type="text" placeholder="Enter Breed">
-            <button type="submit" id="new-dog-submit" name="new-dog-submit">Submit</button>
+        <form id="new-dog-form" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" placeholder="Enter Name" id="name" name="name" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="0" max="25" required><br>
+            <label for="date_of_birth">Birthday:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" required><br>
+            <label for="size">Size:</label>
+            <input type="text" placeholder="Type Small/Medium/Large" id="size" name="size" required><br>
+            <label for="breed">Breed:</label>
+            <input type="text" placeholder="Enter Breed" id="breed" name="breed" required><br>
+            <input type="submit" value="Submit">
         </form>
+        <div id="result"></div>
     </div>
     </div>
     <div id="delete-overlay" class="overlay">
-        <span class="closebtn" onclick="closeForm('delete-overlay')" title="Close Overlay"> &#215 </span>
+        <span class="closebtn" onclick="closeForm('delete-overlay')" title="Close Overlay"> &amp;#215 </span>
     <div class="wrap">
         <h2>Delete Dog</h2>
         <p>Warning: Deleting a dog of the database is permament</p>
@@ -67,7 +70,7 @@
     <div class="wrap">
         <h2>Update Dog</h2>
         <p>Use this form for updating dog details in the daycare.</p>
-        <form>
+        <form id="update-dog-form">
             <input type="text" placeholder="Enter Name">
             <input type="text" placeholder="Enter Age">
             <input type="date"><br>

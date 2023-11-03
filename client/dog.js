@@ -81,7 +81,7 @@ function updatingElementsbyID(dogObject) {
 }
 
 //submit button to trigger the loading of data
-const submitButton = document.querySelector("#submit");
+const submitButton = document.querySelector("#submit-search");
 
 submitButton.addEventListener("click", getandretrieveDogData);
 
@@ -116,3 +116,4 @@ async function deleteDog(deleteBar) {
 
   return response;
 }
+

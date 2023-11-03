@@ -16,6 +16,8 @@ app.use(cors());
 app.use(morgan("dev"));
 // Write middle -ware that will parse all data into JSON
 app.use(express.json());
+//form-data
+app.use(express.urlencoded({ extended: true }));
 
 //Write an express application that will link the routes to an overall path for each table
 app.use("/dogs", dogsRoutes);

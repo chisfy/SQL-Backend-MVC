@@ -15,8 +15,8 @@ async function resetDatabase() {
     await pool.query(`
     CREATE TABLE owners (
       owner_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-      first_name TEXT NOT NULL,
-      last_name TEXT NOT NULL,
+      first_name TEXT,
+      last_name TEXT,
       address TEXT,
       phone_number TEXT
       );
@@ -25,7 +25,7 @@ async function resetDatabase() {
     await pool.query(`
                 CREATE TABLE dogs (
                 dog_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                name TEXT NOT NULL,
+                name TEXT,
                 age INT,
                 date_of_birth DATE,
                 size TEXT,

@@ -25,6 +25,7 @@ const dogList = document.getElementById("dog-list");
 }
 
 // Add a button to the HTML that triggers the retrieval and display of all dogs
-const getAllDogsButton = document.querySelector("#getalldogs");
 document.addEventListener("DOMContentLoaded", retrieveAndDisplayAllDogs);
+
+document.querySelector(".closebtn").addEventListener("click", retrieveAndDisplayAllDogs);
 

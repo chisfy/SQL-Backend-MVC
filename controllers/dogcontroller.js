@@ -94,8 +94,16 @@ export async function updateDogInformation(req, res) {
 }
 
 export async function addNewDog(req, res) {
-  const queryBody = req.body;
-  const newDogAdded = await dogsModel.addNewDog(queryBody);
+  console.log("request body: ", req.body);
+  const newDogData = {
+    name: req.body.name,
+    age: req.body.age,
+    date_of_birth: req.body.date_of_birth,
+    size: req.body.size,
+    breed: req.body.breed
+  };
+
+  const newDogAdded = await dogsModel.addNewDog(newDogData);
 
   res
   .status(201)
