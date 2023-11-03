@@ -46,7 +46,10 @@
             <label for="date_of_birth">Birthday:</label>
             <input type="date" id="date_of_birth" name="date_of_birth" required><br>
             <label for="size">Size:</label>
-            <input type="text" placeholder="Type Small/Medium/Large" id="size" name="size" required><br>
+            <input type="checkbox" id="size-s" name="size" value="Small">Small
+            <input type="checkbox" id="size-m" name="size" value="Medium">Medium
+            <input type="checkbox" id="size-l" name="size" value="Large">Large<br>
+            <!-- <input type="text" placeholder="Type Small/Medium/Large" id="size" name="size" required><br> -->
             <label for="breed">Breed:</label>
             <input type="text" placeholder="Enter Breed" id="breed" name="breed" required><br>
             <input type="submit" value="Submit">
@@ -55,7 +58,7 @@
     </div>
     </div>
     <div id="delete-overlay" class="overlay">
-        <span class="closebtn" onclick="closeForm('delete-overlay')" title="Close Overlay"> &amp;#215 </span>
+        <span class="closebtn" onclick="closeForm('delete-overlay')" title="Close Overlay"> &#xd7 </span>
     <div class="wrap">
         <h2>Delete Dog</h2>
         <p>Warning: Deleting a dog of the database is permament</p>

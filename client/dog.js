@@ -108,9 +108,7 @@ async function deleteDog(deleteBar) {
     method: "DELETE",
   });
 
-  if (response.ok) {
-    alert("The dog has now been deleted");
-  } else {
+  if (!response.ok) {
     throw new Error(`Status: ${response.status}`);
   }
 
