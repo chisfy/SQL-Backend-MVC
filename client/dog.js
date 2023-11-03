@@ -1,15 +1,17 @@
+//searchbar functionality
 let searchBar;
 let dogObject;
 
 async function getandretrieveDogData() {
-searchBar = document.querySelector("#search-name").value;
-if (!isNaN(searchBar)) {
-  dogObject = await retrieveDogDataByID();
-  updatingElementsbyID(dogObject);
-} else {
-  dogObject = await retrieveDogDataByName();
-  updatingElements(dogObject);
-}}
+  searchBar = document.querySelector("#search-name").value;
+  if (!isNaN(searchBar)) {
+    dogObject = await retrieveDogDataByID();
+    updatingElementsbyID(dogObject);
+  } else {
+    dogObject = await retrieveDogDataByName();
+    updatingElements(dogObject);
+  }
+}
 
 async function retrieveDogDataByID() {
   // fetching the path
@@ -21,7 +23,7 @@ async function retrieveDogDataByID() {
 
   if (!response.ok) {
     alert("Oh no, no dog could be found try again");
-    throw new Error('`Status: ${response.status}`');
+    throw new Error(`Status: ${response.status}`);
   }
 
   console.log(dogsArray);
@@ -38,13 +40,12 @@ async function retrieveDogDataByName() {
 
   if (!response.ok) {
     alert("Oh no, no dog could be found try again");
-    throw new Error('`Status: ${response.status}`');
+    throw new Error(`Status: ${response.status}`);
   }
 
   console.log(dogsArray);
   return dogsArray;
 }
-
 
 ///now need to manipulate the data to show on the html page
 let dogID = document.querySelector(".dog-id");
@@ -56,15 +57,15 @@ let dogBreed = document.querySelector(".dog-breed");
 let dogOwner = document.querySelector(".dog-owner");
 
 function updatingElements(dogObject) {
-    dogID.textContent = `ID: ${dogObject[0]["dog_id"]}`;
-    dogName.textContent = `Name: ${dogObject[0]["name"]}`;
-    dogAge.textContent = `Age: ${dogObject[0]["age"]}`;
-    const dogdob = dogObject[0]["date_of_birth"];
-    const dogBirthday = dogdob.substring(0, 10);
-    dogDob.textContent = `Date of Birth: ${dogBirthday}`;
-    dogSize.textContent = `Size: ${dogObject[0]["size"]}`;
-    dogBreed.textContent = `Breed: ${dogObject[0]["breed"]}`;
-    dogOwner.textContent = "Owner: Not Assigned";
+  dogID.textContent = `ID: ${dogObject[0]["dog_id"]}`;
+  dogName.textContent = `Name: ${dogObject[0]["name"]}`;
+  dogAge.textContent = `Age: ${dogObject[0]["age"]}`;
+  const dogdob = dogObject[0]["date_of_birth"];
+  const dogBirthday = dogdob.substring(0, 10);
+  dogDob.textContent = `Date of Birth: ${dogBirthday}`;
+  dogSize.textContent = `Size: ${dogObject[0]["size"]}`;
+  dogBreed.textContent = `Breed: ${dogObject[0]["breed"]}`;
+  dogOwner.textContent = "Owner: Not Assigned";
 }
 
 function updatingElementsbyID(dogObject) {
@@ -87,4 +88,31 @@ submitButton.addEventListener("click", getandretrieveDogData);
 //testing if basic dom maaniuplation worked
 function test() {
   console.log("Hello World");
+}
+
+//delete dog form
+const deleteButton = document.querySelector("#delete-dog-submit");
+
+deleteButton.addEventListener("click", sendAndDeleteDogInformation);
+
+let deleteBar;
+
+async function sendAndDeleteDogInformation() {
+  deleteBar = document.querySelector(".delete-bar").value;
+  await deleteDog(deleteBar);
+}
+
+async function deleteDog(deleteBar) {
+  // fetching the path
+  const response = await fetch(`http://localhost:3000/dogs/${deleteBar}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    alert("The dog has now been deleted");
+  } else {
+    throw new Error(`Status: ${response.status}`);
+  }
+
+  return response;
 }

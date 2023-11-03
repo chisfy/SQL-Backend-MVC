@@ -19,7 +19,7 @@
     </header>
     <button type="button" id="dog-form-add" name="dog-form-add" onclick="openForm('add-overlay')">New Dog</button>
     <button type="button" id="dog-form-delete" name="dog-form-delete" onclick="openForm('delete-overlay')">Remove a Dog</button>
-    <button type="button" id="dog-form-edit" name="dog-form-edit">Update Details</button>
+    <button type="button" id="dog-form-edit" name="dog-form-edit"  onclick="openForm('update-overlay')">Update Details</button>
     <h3>Dogs in The Daycare</h3>
     <ul id="dog-list"></ul>
     <label for="search-name">Find a Dog:</label>
@@ -57,8 +57,26 @@
         <h2>Delete Dog</h2>
         <p>Warning: Deleting a dog of the database is permament</p>
         <form>
-            <input type="text" placeholder="Enter Dog ID">
+            <input class="delete-bar" type="text" placeholder="Enter Dog ID">
             <button type="submit" id="delete-dog-submit" name="delete-dog-submit">Submit</button>
+        </form>
+    </div>
+    </div>
+    <div id="update-overlay" class="overlay">
+        <span class="closebtn" onclick="closeForm('update-overlay')" title="Close Overlay"> &#215 </span>
+    <div class="wrap">
+        <h2>Update Dog</h2>
+        <p>Use this form for updating dog details in the daycare.</p>
+        <form>
+            <input type="text" placeholder="Enter Name">
+            <input type="text" placeholder="Enter Age">
+            <input type="date"><br>
+            <p>Size:</p>
+            <input type="checkbox">Small
+            <input type="checkbox">Medium
+            <input type="checkbox">Large
+            <input type="text" placeholder="Enter Breed">
+            <button type="submit" id="update-dog-submit" name="update-dog-submit">Submit</button>
         </form>
     </div>
     </div>

@@ -98,7 +98,7 @@ export async function addNewDog(req, res) {
   const newDogAdded = await dogsModel.addNewDog(queryBody);
 
   res
-  .status(200)
+  .status(201)
   .json({
     status: "success",
     data: newDogAdded,
