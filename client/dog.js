@@ -13,7 +13,7 @@ async function getandretrieveDogData() {
     matchingDogs = await retrieveDogDataByName();
   }
 
-  if(!matchingDogs) {
+  if(matchingDogs.length === 0) {
     alert("No matching dogs found, please try again");
   }
 
@@ -34,6 +34,26 @@ function createDogCardHTML(dog) {
     <p class="dog-size">Size: ${dog.size}</p>
     <p class="dog-breed">Breed: ${dog.breed}</p>
     <p class="dog-owner">Owner: ${dog.owner_id}</p>
+    <button
+      type="button"
+      class="dog-form-edit"
+      id="dog-form-edit"
+      name="dog-form-edit"
+      data-dog-id="${dog.dog_id}"
+      onclick="openForm('overlay')"
+    >
+      Update Details
+    </button>
+    <button
+      type="button"
+      class="dog-form-delete"
+      id="dog-form-delete"
+      name="dog-form-delete"
+      data-dog-id="${dog.dog_id}"
+      onclick="openForm('delete-overlay')"
+    >
+      Delete Dog
+    </button>
     </div>
   `;
 }
@@ -52,7 +72,7 @@ async function retrieveDogDataByID() {
   const dogsArray = await dogs.data;
 
   if (!response.ok) {
-    alert("Oh no, no dog could be found try again");
+    alert("No matching dogs found, please try again");
     throw new Error(`Status: ${response.status}`);
   }
 
@@ -69,45 +89,12 @@ async function retrieveDogDataByName() {
   const dogsArray = await dogs.data;
 
   if (!response.ok) {
-    alert("Oh no, no dog could be found try again");
+    alert("No matching dogs found, please try again");
     throw new Error(`Status: ${response.status}`);
   }
 
   console.log(dogsArray);
   return dogsArray;
-}
-
-///now need to manipulate the data to show on the html page
-let dogID = document.querySelector(".dog-id");
-let dogName = document.querySelector(".dog-name");
-let dogAge = document.querySelector(".dog-age");
-let dogDob = document.querySelector(".dog-dob");
-let dogSize = document.querySelector(".dog-size");
-let dogBreed = document.querySelector(".dog-breed");
-let dogOwner = document.querySelector(".dog-owner");
-
-function updatingElements(dogObject) {
-  dogID.textContent = `ID: ${dogObject[0]["dog_id"]}`;
-  dogName.textContent = `Name: ${dogObject[0]["name"]}`;
-  dogAge.textContent = `Age: ${dogObject[0]["age"]}`;
-  const dogdob = dogObject[0]["date_of_birth"];
-  const dogBirthday = dogdob.substring(0, 10);
-  dogDob.textContent = `Date of Birth: ${dogBirthday}`;
-  dogSize.textContent = `Size: ${dogObject[0]["size"]}`;
-  dogBreed.textContent = `Breed: ${dogObject[0]["breed"]}`;
-  dogOwner.textContent = "Owner: Not Assigned";
-}
-
-function updatingElementsbyID(dogObject) {
-  dogID.textContent = `ID: ${dogObject["dog_id"]}`;
-  dogName.textContent = `Name: ${dogObject["name"]}`;
-  dogAge.textContent = `Age: ${dogObject["age"]}`;
-  const dogdob = dogObject["date_of_birth"];
-  const dogBirthday = dogdob.substring(0, 10);
-  dogDob.textContent = `Date of Birth: ${dogBirthday}`;
-  dogSize.textContent = `Size: ${dogObject["size"]}`;
-  dogBreed.textContent = `Breed: ${dogObject["breed"]}`;
-  dogOwner.textContent = "Owner: Not Assigned";
 }
 
 //submit button to trigger the loading of data
@@ -119,3 +106,65 @@ submitButton.addEventListener("click", getandretrieveDogData);
 function test() {
   console.log("Hello World");
 }
+
+//
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("dog-form-edit")) {
+    const dogId = event.target.getAttribute("data-dog-id");
+    openForm('overlay');
+
+    //changing form content depending on button
+    const formTitle = document.getElementById("form-title");
+    const formP = document.getElementById("form-p");
+
+    if (formTitle.textContent !== "Update Dog") {
+    formTitle.textContent = "Update Dog";
+    formP.textContent = "Use this form to update a dog in the daycare";
+    }
+
+    
+  }
+});
+
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("dog-form-delete")) {
+    const dogId = event.target.getAttribute("data-dog-id");
+    openForm('delete-overlay');
+
+
+    const deleteform = document.getElementById("delete-dog");
+    const alertMessage = document.querySelector(".alert-message");
+    const alertBox = document.querySelector(".alert");
+    const deleteBar = document.querySelector(".delete-bar");
+    const deleteResultDiv = document.getElementById("delete-result");
+
+    deleteform.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    const formData = new FormData(deleteform);
+    console.log(formData.get("dog_id"));
+    const searchdata = new URLSearchParams(formData);
+    console.log(searchdata);
+    const apiUrl = `http://localhost:3000/dogs/${deleteBar.value}`;
+
+    try {
+    const response = await fetch(apiUrl, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      await response.text();
+      alertBox.style.backgroundColor = "#008000";
+      alertMessage.textContent = "Dog successfully deleted.";
+    }
+  } catch (error) {
+    console.error("There was an error sending the form:", error);
+    deleteResultDiv.textContent = "Form submission failed. Please try again.";
+  }
+});
+
+document.getElementById("delete-closebtn").addEventListener("click", function () {
+  retrieveAndDisplayAllDogs();
+});
+
+  }
+});

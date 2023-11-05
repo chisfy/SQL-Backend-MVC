@@ -29,22 +29,6 @@
     >
       New Dog
     </button>
-    <button
-      type="button"
-      id="dog-form-delete"
-      name="dog-form-delete"
-      onclick="openForm('delete-overlay')"
-    >
-      Remove a Dog
-    </button>
-    <button
-      type="button"
-      id="dog-form-edit"
-      name="dog-form-edit"
-      onclick="openForm('overlay')"
-    >
-      Update Details
-    </button>
     <h1>Dogs in The Daycare</h1>
     <ul id="dog-list"></ul>
     <h1>Need More Info?</h1>
@@ -56,18 +40,10 @@
       placeholder="Dog's Name or ID"
     />
     <button type="button" id="submit-search" name="submit">Search</button>
-    <div id="search-results">
-        <!-- <h3 class="info">Dog:-</h3>
-        <p class="dog-id">ID:</p>
-        <p class="dog-name">Name:</p>
-        <p class="dog-age">Age:</p>
-        <p class="dog-dob">Date of Birth:</p>
-        <p class="dog-size">Size:</p>
-        <p class="dog-breed">Breed:</p>
-        <p class="dog-owner">Owner:</p> -->
-    </div>
+    <div id="search-results"></div>
     <div id="overlay" class="overlay">
       <span
+        id="closebtn"
         class="closebtn"
         onclick="closeForm('overlay')"
         title="Close Overlay"
@@ -126,7 +102,7 @@
     </div>
     <div id="delete-overlay" class="overlay">
       <span
-        id="closebtn"
+        id="delete-closebtn"
         class="closebtn"
         onclick="closeForm('delete-overlay')"
         title="Close Overlay"
