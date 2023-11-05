@@ -25,7 +25,7 @@
       type="button"
       id="dog-form-add"
       name="dog-form-add"
-      onclick="openForm('overlay')"
+      onclick="openForm('new-overlay')"
     >
       New Dog
     </button>
@@ -41,11 +41,11 @@
     />
     <button type="button" id="submit-search" name="submit">Search</button>
     <div id="search-results"></div>
-    <div id="overlay" class="overlay">
+    <div id="new-overlay" class="overlay">
       <span
         id="closebtn"
         class="closebtn"
-        onclick="closeForm('overlay')"
+        onclick="closeForm('new-overlay')"
         title="Close Overlay"
       >
         &times;
@@ -100,6 +100,61 @@
         </form>
       </div>
     </div>
+    <div id="edit-overlay" class="overlay">
+        <span
+          id="edit-closebtn"
+          class="closebtn"
+          onclick="closeForm('edit-overlay')"
+          title="Close Overlay"
+        >
+          &times;
+        </span>
+        <div class="wrap">
+          <h2 id="edit-form-title">Update Dog</h2>
+          <p id="edit-form-p">Use this form to update all of the selected dog's information</p>
+          <form id="dog-form-edit">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              placeholder="Enter Name"
+              id="edit-name"
+              name="name"
+              required
+            /><br />
+            <label for="age">Age:</label>
+            <input
+              type="number"
+              name="age"
+              min="0"
+              max="25"
+              required
+            /><br />
+            <label for="date_of_birth">Birthday:</label>
+            <input
+              type="date"
+              name="date_of_birth"
+              required
+            /><br />
+            <label for="size">Size:</label>
+            <input type="checkbox" name="size" value="Small" />Small
+            <input type="checkbox" name="size" value="Medium" />Medium
+            <input
+              type="checkbox"
+              name="size"
+              value="Large"
+            />Large<br />
+            <label for="breed">Breed:</label>
+            <input
+              type="text"
+              placeholder="Enter Breed"
+              name="breed"
+              required
+            /><br />
+            <input type="submit" value="Submit" />
+            <div id="edit-result"></div>
+          </form>
+        </div>
+      </div>
     <div id="delete-overlay" class="overlay">
       <span
         id="delete-closebtn"

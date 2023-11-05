@@ -1,12 +1,12 @@
 
 //form overlay display
 function openForm(formID) {
-  const form = document.querySelector(`#${formID}`);
+  const form = document.getElementById(`${formID}`);
   form.style.display = "block";
 }
 
 function closeForm(formID) {
-  const form = document.querySelector(`#${formID}`);
+  const form = document.getElementById(`${formID}`);
   form.style.display = "none";
 }
 
@@ -41,17 +41,6 @@ form.addEventListener("submit", async function (event) {
   }
 });
 
-// //changing form content depending on button
-// const updateButton = document.getElementsByClassName(".dog-form-edit");
-// console.log(updateButton);
-
-// updateButton.addEventListener("click", () => {
-  //   if (formTitle.textContent !== "Update Dog") {
-    //     formTitle.textContent = "Update Dog";
-    //     formP.textContent = "Use this form to update a dog in the daycare";
-    // }
-    // });
-    
     //changing form content back to default
 const formTitle = document.getElementById("form-title");
 const formP = document.getElementById("form-p");

@@ -5,7 +5,7 @@ let matchingDogs;
 async function getandretrieveDogData() {
   searchBar = document.querySelector("#search-name").value;
   const searchResults = document.getElementById("search-results");
-  searchResults.innerHTML="";
+  searchResults.innerHTML = "";
 
   if (!isNaN(searchBar)) {
     matchingDogs = await retrieveDogDataByID();
@@ -13,11 +13,13 @@ async function getandretrieveDogData() {
     matchingDogs = await retrieveDogDataByName();
   }
 
-  if(matchingDogs.length === 0) {
+  if (matchingDogs.length === 0) {
     alert("No matching dogs found, please try again");
   }
 
-  const dogCardsHTML = matchingDogs.map((dog) => createDogCardHTML(dog)).join('');
+  const dogCardsHTML = matchingDogs
+    .map((dog) => createDogCardHTML(dog))
+    .join("");
   searchResults.innerHTML = dogCardsHTML;
 }
 
@@ -40,7 +42,7 @@ function createDogCardHTML(dog) {
       id="dog-form-edit"
       name="dog-form-edit"
       data-dog-id="${dog.dog_id}"
-      onclick="openForm('overlay')"
+      onclick="openForm('edit-overlay')"
     >
       Update Details
     </button>
@@ -111,26 +113,53 @@ function test() {
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("dog-form-edit")) {
     const dogId = event.target.getAttribute("data-dog-id");
-    openForm('overlay');
+    openForm("overlay");
 
-    //changing form content depending on button
-    const formTitle = document.getElementById("form-title");
-    const formP = document.getElementById("form-p");
+    const form = document.getElementById("dog-form-edit");
+    const resultDiv = document.getElementById("edit-result");
+    const apiUrl = `http://localhost:3000/dogs/${dogId}`;
 
-    if (formTitle.textContent !== "Update Dog") {
-    formTitle.textContent = "Update Dog";
-    formP.textContent = "Use this form to update a dog in the daycare";
-    }
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
 
-    
+      const formData = new FormData(form);
+      const searchdata = new URLSearchParams(formData);
+      console.log(searchdata);
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: searchdata,
+        });
+
+        if (response.ok) {
+          const data = await response.text();
+          resultDiv.textContent =
+            "Form submitted successfully. Response: " + data;
+          form.reset();
+        }
+      } catch (error) {
+        console.error("There was an error sending the form:", error);
+        resultDiv.textContent = "Form submission failed. Please try again.";
+      }
+    });
+
+    const overlayButton = document.getElementById("edit-closebtn");
+    console.log(overlayButton);
+    overlayButton.addEventListener("click", function () {
+      console.log("Close button clicked");
+      retrieveAndDisplayAllDogs();
+    });
   }
 });
 
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("dog-form-delete")) {
     const dogId = event.target.getAttribute("data-dog-id");
-    openForm('delete-overlay');
-
+    openForm("delete-overlay");
 
     const deleteform = document.getElementById("delete-dog");
     const alertMessage = document.querySelector(".alert-message");
@@ -139,32 +168,33 @@ document.addEventListener("click", function (event) {
     const deleteResultDiv = document.getElementById("delete-result");
 
     deleteform.addEventListener("submit", async function (event) {
-    event.preventDefault();
-    const formData = new FormData(deleteform);
-    console.log(formData.get("dog_id"));
-    const searchdata = new URLSearchParams(formData);
-    console.log(searchdata);
-    const apiUrl = `http://localhost:3000/dogs/${deleteBar.value}`;
+      event.preventDefault();
+      const formData = new FormData(deleteform);
+      console.log(formData.get("dog_id"));
+      const searchdata = new URLSearchParams(formData);
+      console.log(searchdata);
+      const apiUrl = `http://localhost:3000/dogs/${deleteBar.value}`;
 
-    try {
-    const response = await fetch(apiUrl, {
-      method: "DELETE",
+      try {
+        const response = await fetch(apiUrl, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          await response.text();
+          alertBox.style.backgroundColor = "#008000";
+          alertMessage.textContent = "Dog successfully deleted.";
+        }
+      } catch (error) {
+        console.error("There was an error sending the form:", error);
+        deleteResultDiv.textContent = "Deletion failed. Please try again.";
+      }
     });
 
-    if (response.ok) {
-      await response.text();
-      alertBox.style.backgroundColor = "#008000";
-      alertMessage.textContent = "Dog successfully deleted.";
-    }
-  } catch (error) {
-    console.error("There was an error sending the form:", error);
-    deleteResultDiv.textContent = "Form submission failed. Please try again.";
-  }
-});
-
-document.getElementById("delete-closebtn").addEventListener("click", function () {
-  retrieveAndDisplayAllDogs();
-});
-
+    document
+      .getElementById("delete-closebtn")
+      .addEventListener("click", function () {
+        retrieveAndDisplayAllDogs();
+      });
   }
 });
