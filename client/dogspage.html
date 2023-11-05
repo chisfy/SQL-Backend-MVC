@@ -1,29 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dog Daycare</title>
-    <link href="dogpage.css" rel="stylesheet">
-</head>
-<body>
+    <link href="dogpage.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
     <header>
-        <div class="navbar-container">
+      <div class="navbar-container">
         <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="ownerspage.html">Owners</a></li>
-            </ul>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="ownerspage.html">Owners</a></li>
+          </ul>
         </nav>
-        </div>
+      </div>
     </header>
-    <button type="button" id="dog-form-add" name="dog-form-add" onclick="openForm('add-overlay')">New Dog</button>
-    <button type="button" id="dog-form-delete" name="dog-form-delete" onclick="openForm('delete-overlay')">Remove a Dog</button>
-    <button type="button" id="dog-form-edit" name="dog-form-edit"  onclick="openForm('update-overlay')">Update Details</button>
+    <button
+      type="button"
+      id="dog-form-add"
+      name="dog-form-add"
+      onclick="openForm('overlay')"
+    >
+      New Dog
+    </button>
+    <button
+      type="button"
+      id="dog-form-delete"
+      name="dog-form-delete"
+      onclick="openForm('delete-overlay')"
+    >
+      Remove a Dog
+    </button>
+    <button
+      type="button"
+      id="dog-form-edit"
+      name="dog-form-edit"
+      onclick="openForm('overlay')"
+    >
+      Update Details
+    </button>
     <h3>Dogs in The Daycare</h3>
     <ul id="dog-list"></ul>
     <label for="search-name">Find a Dog:</label>
-    <input type="text" id="search-name" name="search-name" placeholder="Dog's Name or ID">
+    <input
+      type="text"
+      id="search-name"
+      name="search-name"
+      placeholder="Dog's Name or ID"
+    />
     <button type="button" id="submit-search" name="submit">Search</button>
     <h3 class="info">Dog:-</h3>
     <p class="dog-id">ID:</p>
@@ -33,61 +63,95 @@
     <p class="dog-size">Size:</p>
     <p class="dog-breed">Breed:</p>
     <p class="dog-owner">Owner:</p>
-    <div id="add-overlay" class="overlay">
-        <span class="closebtn" onclick="closeForm('add-overlay')" title="Close Overlay"> &#xd7 </span>
-    <div class="wrap">
-        <h2>New Dog</h2>
-        <p>Use this form for new dogs joining the daycare</p>
-        <form id="new-dog-form" method="POST">
-            <label for="name">Name:</label>
-            <input type="text" placeholder="Enter Name" id="name" name="name" required><br>
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" min="0" max="25" required><br>
-            <label for="date_of_birth">Birthday:</label>
-            <input type="date" id="date_of_birth" name="date_of_birth" required><br>
-            <label for="size">Size:</label>
-            <input type="checkbox" id="size-s" name="size" value="Small">Small
-            <input type="checkbox" id="size-m" name="size" value="Medium">Medium
-            <input type="checkbox" id="size-l" name="size" value="Large">Large<br>
-            <!-- <input type="text" placeholder="Type Small/Medium/Large" id="size" name="size" required><br> -->
-            <label for="breed">Breed:</label>
-            <input type="text" placeholder="Enter Breed" id="breed" name="breed" required><br>
-            <input type="submit" value="Submit">
+    <div id="overlay" class="overlay">
+      <span
+        class="closebtn"
+        onclick="closeForm('overlay')"
+        title="Close Overlay"
+      >
+        &times;
+      </span>
+      <div class="wrap">
+        <h2 id="form-title">New Dog</h2>
+        <p id="form-p">Use this form for a new dog joining the daycare</p>
+        <form id="dog-form">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            placeholder="Enter Name"
+            id="name"
+            name="name"
+            required
+          /><br />
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            min="0"
+            max="25"
+            required
+          /><br />
+          <label for="date_of_birth">Birthday:</label>
+          <input
+            type="date"
+            id="date_of_birth"
+            name="date_of_birth"
+            required
+          /><br />
+          <label for="size">Size:</label>
+          <input type="checkbox" id="size-s" name="size" value="Small" />Small
+          <input type="checkbox" id="size-m" name="size" value="Medium" />Medium
+          <input
+            type="checkbox"
+            id="size-l"
+            name="size"
+            value="Large"
+          />Large<br />
+          <label for="breed">Breed:</label>
+          <input
+            type="text"
+            placeholder="Enter Breed"
+            id="breed"
+            name="breed"
+            required
+          /><br />
+          <input type="submit" value="Submit" />
+          <div id="result"></div>
         </form>
-        <div id="result"></div>
-    </div>
+      </div>
     </div>
     <div id="delete-overlay" class="overlay">
-        <span class="closebtn" onclick="closeForm('delete-overlay')" title="Close Overlay"> &#xd7 </span>
-    <div class="wrap">
+      <span
+        id="closebtn"
+        class="closebtn"
+        onclick="closeForm('delete-overlay')"
+        title="Close Overlay"
+      >
+        &times;
+      </span>
+      <div class="wrap">
         <h2>Delete Dog</h2>
-        <p>Warning: Deleting a dog of the database is permament</p>
-        <form>
-            <input class="delete-bar" type="text" placeholder="Enter Dog ID">
-            <button type="submit" id="delete-dog-submit" name="delete-dog-submit">Submit</button>
+        <div class="alert">
+          <p class="alert-message">
+            <strong>Warning!</strong> Deleting is Permanent.
+          </p>
+        </div>
+        <form id="delete-dog">
+          <input
+            class="delete-bar"
+            type="text"
+            placeholder="Enter Dog ID"
+            id="dog_id"
+            name="dog_id"
+          />
+          <input type="submit" value="Submit" />
+          <div id="delete-result"></div>
         </form>
-    </div>
-    </div>
-    <div id="update-overlay" class="overlay">
-        <span class="closebtn" onclick="closeForm('update-overlay')" title="Close Overlay"> &#215 </span>
-    <div class="wrap">
-        <h2>Update Dog</h2>
-        <p>Use this form for updating dog details in the daycare.</p>
-        <form id="update-dog-form">
-            <input type="text" placeholder="Enter Name">
-            <input type="text" placeholder="Enter Age">
-            <input type="date"><br>
-            <p>Size:</p>
-            <input type="checkbox">Small
-            <input type="checkbox">Medium
-            <input type="checkbox">Large
-            <input type="text" placeholder="Enter Breed">
-            <button type="submit" id="update-dog-submit" name="update-dog-submit">Submit</button>
-        </form>
-    </div>
+      </div>
     </div>
     <script src="dog.js"></script>
     <script src="getalldogs.js"></script>
     <script src="forms.js"></script>
-</body>
+  </body>
 </html>

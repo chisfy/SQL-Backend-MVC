@@ -89,29 +89,3 @@ submitButton.addEventListener("click", getandretrieveDogData);
 function test() {
   console.log("Hello World");
 }
-
-//delete dog form
-const deleteButton = document.querySelector("#delete-dog-submit");
-
-deleteButton.addEventListener("click", sendAndDeleteDogInformation);
-
-let deleteBar;
-
-async function sendAndDeleteDogInformation() {
-  deleteBar = document.querySelector(".delete-bar").value;
-  await deleteDog(deleteBar);
-}
-
-async function deleteDog(deleteBar) {
-  // fetching the path
-  const response = await fetch(`http://localhost:3000/dogs/${deleteBar}`, {
-    method: "DELETE",
-  });
-
-  if (!response.ok) {
-    throw new Error(`Status: ${response.status}`);
-  }
-
-  return response;
-}
-
