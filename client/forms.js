@@ -13,18 +13,18 @@ function closeForm(formID) {
 ///new dog form
 const form = document.getElementById("dog-form");
 const resultDiv = document.getElementById("result");
+const apiUrl = "http://localhost:3000/dogs";
 
 form.addEventListener("submit", async function (event) {
   event.preventDefault();
   const formData = new FormData(form);
-  console.log(formData.get("name"));
-  console.log(formData.get("age"));
-  console.log(formData.get("date_of_birth"));
-  console.log(formData.get("size"));
-  console.log(formData.get("breed"));
+  // console.log(formData.get("name"));
+  // console.log(formData.get("age"));
+  // console.log(formData.get("date_of_birth"));
+  // console.log(formData.get("size"));
+  // console.log(formData.get("breed"));
   const searchdata = new URLSearchParams(formData);
   console.log(searchdata);
-  const apiUrl = "http://localhost:3000/dogs";
 
   try {
     const response = await fetch(apiUrl, {
@@ -46,6 +46,7 @@ form.addEventListener("submit", async function (event) {
   }
 });
 
+//changing form content depending on button
 const updateButton = document.getElementById("dog-form-edit");
 const formTitle = document.getElementById("form-title");
 const formP = document.getElementById("form-p");
@@ -54,9 +55,10 @@ updateButton.addEventListener("click", () => {
   if (formTitle.textContent !== "Update Dog") {
     formTitle.textContent = "Update Dog";
     formP.textContent = "Use this form to update a dog in the daycare";
-  }
+}
 });
 
+//changing form content back to default
 const addButton = document.getElementById("dog-form-add");
 
 addButton.addEventListener("click", () => {
@@ -64,6 +66,11 @@ addButton.addEventListener("click", () => {
     formTitle.textContent = "New Dog";
     formP.textContent = "Use this form for a new dog joining the daycare";
   }
+});
+
+//list updated when forms are closed
+document.querySelector(".closebtn").addEventListener("click", function () {
+  retrieveAndDisplayAllDogs();
 });
 
 //delete dog form
@@ -97,6 +104,7 @@ deleteform.addEventListener("submit", async function (event) {
   }
 });
 
+//iist updates when form is closed
 document.getElementById("closebtn").addEventListener("click", function () {
   retrieveAndDisplayAllDogs();
 });

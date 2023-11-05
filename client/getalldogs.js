@@ -27,8 +27,3 @@ async function retrieveAndDisplayAllDogs() {
 // Add a button to the HTML that triggers the retrieval and display of all dogs
 document.addEventListener("DOMContentLoaded", retrieveAndDisplayAllDogs);
 
-document.querySelector(".closebtn").addEventListener("click", function () {
-  retrieveAndDisplayAllDogs();
-});
-
-
