@@ -1,16 +1,46 @@
 //searchbar functionality
 let searchBar;
-let dogObject;
+let matchingDogs;
 
 async function getandretrieveDogData() {
   searchBar = document.querySelector("#search-name").value;
+  const searchResults = document.getElementById("search-results");
+  searchResults.innerHTML="";
+
   if (!isNaN(searchBar)) {
-    dogObject = await retrieveDogDataByID();
-    updatingElementsbyID(dogObject);
+    matchingDogs = await retrieveDogDataByID();
   } else {
-    dogObject = await retrieveDogDataByName();
-    updatingElements(dogObject);
+    matchingDogs = await retrieveDogDataByName();
   }
+
+  if(!matchingDogs) {
+    alert("No matching dogs found, please try again");
+  }
+
+  const dogCardsHTML = matchingDogs.map((dog) => createDogCardHTML(dog)).join('');
+  searchResults.innerHTML = dogCardsHTML;
+}
+
+function createDogCardHTML(dog) {
+  const formattedDate = birthdayOfDog(dog.date_of_birth);
+
+  return `
+    <div class="dog-card">
+    <h3 class="info">Dog:-</h3>
+    <p class="dog-id">ID: ${dog.dog_id}</p>
+    <p class="dog-name">Name: ${dog.name}</p>
+    <p class="dog-age">Age:${dog.age}</p>
+    <p class="dog-dob">Date of Birth: ${formattedDate}</p>
+    <p class="dog-size">Size: ${dog.size}</p>
+    <p class="dog-breed">Breed: ${dog.breed}</p>
+    <p class="dog-owner">Owner: ${dog.owner_id}</p>
+    </div>
+  `;
+}
+
+function birthdayOfDog(dateofbirth) {
+  const date = new Date(dateofbirth);
+  return date.toLocaleDateString();
 }
 
 async function retrieveDogDataByID() {

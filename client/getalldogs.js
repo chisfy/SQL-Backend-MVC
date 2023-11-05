@@ -18,9 +18,13 @@ async function retrieveAndDisplayAllDogs() {
 
   // Create a list item for each dog and append it to the list
   dogsArray.forEach((dog) => {
-    const listItem = document.createElement("li");
-    listItem.textContent = `${dog.name}`;
-    dogList.appendChild(listItem);
+    dogList.innerHTML += `
+    <li>
+    <div>
+    <p>${dog.name}</p>
+    <p> ID: ${dog.dog_id}</p>
+    </div>
+    </li>`
   });
 }
 
