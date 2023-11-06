@@ -1,8 +1,9 @@
-
 //form overlay display
 function openForm(formID) {
   const form = document.getElementById(`${formID}`);
-  form.style.display = "block";
+  if (form) {
+    form.style.display = "block";
+  }
 }
 
 function closeForm(formID) {
@@ -41,7 +42,7 @@ form.addEventListener("submit", async function (event) {
   }
 });
 
-    //changing form content back to default
+//changing form content back to default
 const formTitle = document.getElementById("form-title");
 const formP = document.getElementById("form-p");
 const addButton = document.getElementById("dog-form-add");

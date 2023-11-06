@@ -113,7 +113,7 @@ function test() {
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("dog-form-edit")) {
     const dogId = event.target.getAttribute("data-dog-id");
-    openForm("overlay");
+    openForm("edit-overlay");
 
     const form = document.getElementById("dog-form-edit");
     const resultDiv = document.getElementById("edit-result");
@@ -122,17 +122,22 @@ document.addEventListener("click", function (event) {
     form.addEventListener("submit", async function (event) {
       event.preventDefault();
 
-      const formData = new FormData(form);
-      const searchdata = new URLSearchParams(formData);
+      const formData = new FormData(event.target);
+      const searchdata = {};
+
+      formData.forEach((value, key) => {
+        searchdata[key] = value;
+      });
+
       console.log(searchdata);
 
       try {
         const response = await fetch(apiUrl, {
-          method: "PATCH",
+          method: 'POST',
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
-          body: searchdata,
+          body: JSON.stringify(searchdata),
         });
 
         if (response.ok) {
