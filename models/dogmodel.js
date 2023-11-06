@@ -106,6 +106,6 @@ export async function getDogsBySize(size) {
   const result = await pool.query(querySQLText, [size]);
 
   // The rows property of the result object contains the retrieved records
-  return result.rows;
+  return result.rows[0];
 
 }

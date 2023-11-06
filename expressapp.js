@@ -14,19 +14,19 @@ export const app = express();
 ///middleware to use cors
 app.use(cors());
 
-// app.use(
-//   cors({
-//     origin: *,
-//     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
-//   })
-// );
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5501",
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
+  })
+);
 //Write middle-ware that will console log the stats of each request
 app.use(morgan("dev"));
 // Write middle -ware that will parse all data into JSON
 app.use(express.json());
 //form-data
 app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride("_method"));
+//app.use(methodOverride("_method"));
 
 //Write an express application that will link the routes to an overall path for each table
 app.use("/dogs", dogsRoutes);
