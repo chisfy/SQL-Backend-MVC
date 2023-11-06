@@ -14,10 +14,12 @@ export const app = express();
 ///middleware to use cors
 app.use(cors());
 
-app.use(cors({
-    origin: "http://127.0.0.1:5500",
-    methods: ["GET", "POST", "PATCH", "DELETE"],
-}));
+// app.use(
+//   cors({
+//     origin: *,
+//     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
+//   })
+// );
 //Write middle-ware that will console log the stats of each request
 app.use(morgan("dev"));
 // Write middle -ware that will parse all data into JSON

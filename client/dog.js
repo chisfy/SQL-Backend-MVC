@@ -109,7 +109,7 @@ function test() {
   console.log("Hello World");
 }
 
-//
+//UPDATE FORM
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("dog-form-edit")) {
     const dogId = event.target.getAttribute("data-dog-id");
@@ -133,9 +133,9 @@ document.addEventListener("click", function (event) {
 
       try {
         const response = await fetch(apiUrl, {
-          method: 'POST',
+          method: 'PATCH',
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(searchdata),
         });
@@ -155,12 +155,14 @@ document.addEventListener("click", function (event) {
     const overlayButton = document.getElementById("edit-closebtn");
     console.log(overlayButton);
     overlayButton.addEventListener("click", function () {
+      event.stopPropagation();
       console.log("Close button clicked");
       retrieveAndDisplayAllDogs();
     });
   }
 });
 
+//DELETE DOG
 document.addEventListener("click", function (event) {
   if (event.target.classList.contains("dog-form-delete")) {
     const dogId = event.target.getAttribute("data-dog-id");
