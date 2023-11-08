@@ -156,11 +156,11 @@ function test() {
 // });
 // });
 
-    // const overlayButton = document.getElementById("edit-closebtn");
-    // overlayButton.addEventListener("click", function (event) {
-    //   event.stopPropagation();
-    //   console.log("Close button clicked");
-    //   retrieveAndDisplayAllDogs();
+// const overlayButton = document.getElementById("edit-closebtn");
+// overlayButton.addEventListener("click", function (event) {
+//   event.stopPropagation();
+//   console.log("Close button clicked");
+//   retrieveAndDisplayAllDogs();
 
 //DELETE DOG
 document.addEventListener("click", function (event) {
