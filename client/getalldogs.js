@@ -33,7 +33,9 @@ document.addEventListener("DOMContentLoaded", retrieveAndDisplayAllDogs);
 
 document
   .getElementById("alphabetical")
-  .addEventListener("click", alphabeticalOrder);
+  .addEventListener("change", () => handleCheckboxChange("alphabetical"));
+
+
 
 async function alphabeticalOrder() {
   const response = await fetch(`http://localhost:3000/dogs/atoz`);
@@ -75,9 +77,9 @@ document
   .getElementById("largeCheckbox")
   .addEventListener("change", () => handleCheckboxChange("largeCheckbox"));
 
-async function getDogBySize(e) {
+async function getDogBySize(size) {
   const response = await fetch(
-    `http://localhost:3000/dogs/size/${e.target.value}`
+    `http://localhost:3000/dogs/size/${size}`
   );
 
   if (!response.ok) {
@@ -109,10 +111,13 @@ async function getDogBySize(e) {
 
 function handleCheckboxChange(checkboxId) {
   const checkbox = document.getElementById(checkboxId);
+  const checkboxValue = checkbox.value;
   // Check if the checkbox is unchecked
   if (!checkbox.checked) {
     retrieveAndDisplayAllDogs();
+  } else if (checkboxId === "alphabetical" && checkbox.checked) {
+    alphabeticalOrder();
   } else {
-    getDogBySize(e);
+    getDogBySize(checkboxValue);
   }
 }
