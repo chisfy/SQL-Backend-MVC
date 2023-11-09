@@ -24,14 +24,16 @@ async function retrieveAndDisplayAllDogs() {
     <p>${dog.name}</p>
     <p> ID: ${dog.dog_id}</p>
     </div>
-    </li>`
+    </li>`;
   });
 }
 
 // Add a button to the HTML that triggers the retrieval and display of all dogs
 document.addEventListener("DOMContentLoaded", retrieveAndDisplayAllDogs);
 
-document.getElementById("alphabetical").addEventListener("click", alphabeticalOrder)
+document
+  .getElementById("alphabetical")
+  .addEventListener("click", alphabeticalOrder);
 
 async function alphabeticalOrder() {
   const response = await fetch(`http://localhost:3000/dogs/atoz`);
@@ -57,18 +59,26 @@ async function alphabeticalOrder() {
     <p>${dog.name}</p>
     <p> ID: ${dog.dog_id}</p>
     </div>
-    </li>`
+    </li>`;
   });
 }
 
-document.getElementById("smallCheckbox").addEventListener("change", getDogBySize)
+document
+  .getElementById("smallCheckbox")
+  .addEventListener("change", () => handleCheckboxChange("smallCheckbox"));
 
-document.getElementById("mediumCheckbox").addEventListener("change", getDogBySize)
+document
+  .getElementById("mediumCheckbox")
+  .addEventListener("change", () => handleCheckboxChange("mediumCheckbox"));
 
-document.getElementById("largeCheckbox").addEventListener("change", getDogBySize)
+document
+  .getElementById("largeCheckbox")
+  .addEventListener("change", () => handleCheckboxChange("largeCheckbox"));
 
 async function getDogBySize(e) {
-  const response = await fetch(`http://localhost:3000/dogs/size/${e.target.value}`);
+  const response = await fetch(
+    `http://localhost:3000/dogs/size/${e.target.value}`
+  );
 
   if (!response.ok) {
     alert("Oh no, no dog could be found try again");
@@ -93,6 +103,16 @@ async function getDogBySize(e) {
     <p>${dog.name}</p>
     <p> ID: ${dog.dog_id}</p>
     </div>
-    </li>`
+    </li>`;
   });
+}
+
+function handleCheckboxChange(checkboxId) {
+  const checkbox = document.getElementById(checkboxId);
+  // Check if the checkbox is unchecked
+  if (!checkbox.checked) {
+    retrieveAndDisplayAllDogs();
+  } else {
+    getDogBySize(e);
+  }
 }
