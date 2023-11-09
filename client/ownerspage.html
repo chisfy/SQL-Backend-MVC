@@ -1,36 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dog Daycare</title>
-</head>
-<body>
+    <link href="dogpage.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
     <header>
-        <div class="navbar-container">
+      <div class="navbar-container">
         <nav>
-            <ul>
-                <li><a href="home.html">Home</a></li>
-                <li><a href="dogspage.html">Dogs</a></li>
-            </ul>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="dogspage.html">Owners</a></li>
+          </ul>
         </nav>
-        </div>
+      </div>
     </header>
-    <button type="button" id="owner-form-add" name="owner-form-add">New Owner</button>
-    <button type="button" id="owner-form-delete" name="owner-form-delete">Remove an Owner</button>
-    <button type="button" id="owner-form-edit" name="owner-form-edit">Update Details</button>
-    <h3>Owners</h3>
+    <button
+      type="button"
+      id="owner-form-add"
+      name="owner-form-add"
+      onclick="openForm('new-overlay')"
+    >
+      New Owner
+    </button>
+    <h1>Owners in The Daycare</h1>
     <ul id="owner-list"></ul>
+    <label for="size">Sort by:</label>
+    <input type="checkbox" id="surnameAZ" value="surnameAZ"> Surname A-Z
+    <input type="checkbox" id="alphabetical" value="alphabetical">A-Z
+    <h1>Need More Info?</h1>
     <label for="search-name">Find an Owner:</label>
-    <input type="text" id="search-name" name="search-name" placeholder="Owner's First Name or ID">
-    <button type="button" id="submit" name="submit">Search</button>
-    <h3 class="info">Owner:-</h3>
-    <p class="owner-id">ID:</p>
-    <p class="owner-first">First Name:</p>
-    <p class="owner-last">Last Name:</p>
-    <p class="owner-address">Address:</p>
-    <p class="owner-phoneno">Phone Number:</p>
-    <script src="owner.js"></script>
+    <input
+      type="text"
+      id="search-name"
+      name="search-name"
+      placeholder="Owner's Name or ID"
+    />
+    <button type="button" id="submit-search" name="submit">Search</button>
+    <div id="search-results"></div>
+    <div id="new-overlay" class="overlay">
+      <span
+        id="closebtn"
+        class="closebtn"
+        onclick="closeForm('new-overlay')"
+        title="Close Overlay"
+      >
+        &times;
+      </span>
+      <div class="wrap">
+        <h2 id="form-title">New Owner</h2>
+        <p id="form-p">Use this form for a new owner joining the daycare</p>
+        <form id="owner-form">
+          <label for="first_name">First-Name:</label>
+          <input
+            type="text"
+            placeholder="Enter First Name"
+            id="first_name"
+            name="first_name"
+            required
+          /><br />
+          <label for="last_name">Last-Name:</label>
+          <input
+          type="text"
+          placeholder="Enter Last Name"
+          id="last_name"
+          name="last_name"
+            required
+          /><br />
+          <label for="address">Address:</label>
+          <input
+          type="text"
+          placeholder="Enter address"
+          id="address"
+          name="address"
+            required
+          /><br />
+          <label for="phone_number">Phone Number:</label>
+          <input
+          type="text"
+          placeholder="Enter Phone Number"
+          id="phone_number"
+          name="phone_number"
+            required
+          /><br />
+          <input type="submit" value="Submit" />
+          <div id="result"></div>
+        </form>
+      </div>
+    </div>
+    <div id="edit-overlay" class="overlay">
+      <span
+        id="edit-closebtn"
+        class="closebtn"
+        onclick="closeForm('edit-overlay')"
+        title="Close Overlay"
+      >
+        &times;
+      </span>
+      <div class="wrap">
+        <h2 id="edit-form-title">Update Owner</h2>
+        <p id="edit-form-p">
+          Use this form to update all of the selected owner's information
+        </p>
+        <form id="owner-form-edit">
+          <!-- <input type="hidden" name="_method" value="PUT" /> -->
+          <label for="first_name">First-Name:</label>
+          <input
+            type="text"
+            placeholder="Enter First Name"
+            id="first_name"
+            name="first_name"
+            required
+          /><br />
+          <label for="last_name">Last-Name:</label>
+          <input
+          type="text"
+          placeholder="Enter Last Name"
+          id="last_name"
+          name="last_name"
+            required
+          /><br />
+          <label for="address">Address:</label>
+          <input
+          type="text"
+          placeholder="Enter address"
+          id="address"
+          name="address"
+            required
+          /><br />
+          <label for="phone_number">Phone Number:</label>
+          <input
+          type="text"
+          placeholder="Enter Phone Number"
+          id="phone_number"
+          name="phone_number"
+            required
+          /><br />
+          <input type="submit" value="Submit" />
+          <div id="edit-result"></div>
+        </form>
+      </div>
+    </div>
+    <div id="delete-overlay" class="overlay">
+      <span
+        id="delete-closebtn"
+        class="closebtn"
+        onclick="closeForm('delete-overlay')"
+        title="Close Overlay"
+      >
+        &times;
+      </span>
+      <div class="wrap">
+        <h2>Remove Owner</h2>
+        <div class="alert">
+          <p class="alert-message">
+            <strong>Warning!</strong> Deleting is Permanent.
+          </p>
+        </div>
+        <form id="delete-owner">
+          <input
+            class="delete-bar"
+            type="text"
+            placeholder="Enter Owners ID"
+            id="owner_id"
+            name="owner_id"
+          />
+          <input type="submit" value="Submit" />
+          <div id="delete-result"></div>
+        </form>
+      </div>
+    </div>
+    <script src="owners.js" async></script>
     <script src="getallowners.js"></script>
-</body>
+    <script src="ownersforms.js"></script>
+  </body>
 </html>
