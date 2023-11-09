@@ -24,7 +24,7 @@ export async function getOwnerByID(id) {
   const result = await pool.query(querySQLText, [id]);
 
   // The rows property of the result object contains the retrieved record or null if not found
-  return result.rows[0] || null;
+  return result.rows || null;
 
 }
 

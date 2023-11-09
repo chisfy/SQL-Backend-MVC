@@ -11,10 +11,10 @@ function closeForm(formID) {
   form.style.display = "none";
 }
 
-///new dog form
-const form = document.getElementById("dog-form");
+///new owner form
+const form = document.getElementById("owner-form");
 const resultDiv = document.getElementById("result");
-const apiUrl = "http://localhost:3000/dogs";
+const apiUrl = "http://localhost:3000/owners";
 
 form.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -48,4 +48,47 @@ console.log(overlayButton);
 overlayButton.addEventListener("click", function () {
   console.log("Close button clicked");
   retrieveAndDisplayAllDogs();
+});
+
+document.addEventListener("click", function (event) {
+  if (event.target.classList.contains("owner-form-delete")) {
+    event.target.getAttribute("data-owner-id");
+    openForm("delete-overlay");
+
+    const deleteform = document.getElementById("delete-owner");
+    const alertMessage = document.querySelector(".alert-message");
+    const alertBox = document.querySelector(".alert");
+    const deleteBar = document.querySelector(".delete-bar");
+    const deleteResultDiv = document.getElementById("delete-result");
+
+    deleteform.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const formData = new FormData(deleteform);
+      console.log(formData.get("dog_id"));
+      const searchdata = new URLSearchParams(formData);
+      console.log(searchdata);
+      const apiUrl = `http://localhost:3000/owners/${deleteBar.value}`;
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          await response.text();
+          alertBox.style.backgroundColor = "#008000";
+          alertMessage.textContent = "Customer successfully deleted.";
+        }
+      } catch (error) {
+        console.error("There was an error sending the form:", error);
+        deleteResultDiv.textContent = "Deletion failed. Please try again.";
+      }
+    });
+
+    document
+      .getElementById("delete-closebtn")
+      .addEventListener("click", function () {
+        retrieveAndDisplayAllDogs();
+      });
+  }
 });
