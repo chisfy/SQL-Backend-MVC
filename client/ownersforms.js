@@ -47,7 +47,7 @@ const overlayButton = document.getElementById("closebtn");
 console.log(overlayButton);
 overlayButton.addEventListener("click", function () {
   console.log("Close button clicked");
-  retrieveAndDisplayAllDogs();
+  retrieveAndDisplayAllOwners();
 });
 
 document.addEventListener("click", function (event) {
@@ -88,7 +88,7 @@ document.addEventListener("click", function (event) {
     document
       .getElementById("delete-closebtn")
       .addEventListener("click", function () {
-        retrieveAndDisplayAllDogs();
+        retrieveAndDisplayAllOwners();
       });
   }
 });

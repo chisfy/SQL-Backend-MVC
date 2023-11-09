@@ -1,5 +1,5 @@
 let searchBar;
-let ownerObject;
+let matchingOwners;
 
 async function getandretrieveOwnerData() {
   searchBar = document.querySelector("#search-name").value;
