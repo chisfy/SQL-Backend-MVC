@@ -11,7 +11,6 @@ export async function getOwners() {
 
   // The rows property of the result object contains the retrieved records
   return result.rows;
-
 }
 
 export async function getOwnerByID(id) {
@@ -25,7 +24,6 @@ export async function getOwnerByID(id) {
 
   // The rows property of the result object contains the retrieved record or null if not found
   return result.rows || null;
-
 }
 
 export async function getOwnerssAlphabetical() {
@@ -39,7 +37,6 @@ export async function getOwnerssAlphabetical() {
 
   // The rows property of the result object contains the retrieved records
   return result.rows;
-
 }
 
 export async function getOwnerssByName(first_name) {
@@ -53,7 +50,6 @@ export async function getOwnerssByName(first_name) {
 
   // The rows property of the result object contains the retrieved record or null if not found
   return result.rows;
-
 }
 
 export async function deleteOwnerByID(id) {
@@ -67,7 +63,6 @@ export async function deleteOwnerByID(id) {
 
   // The rows property of the result object contains the retrieved record or null if not found
   return result.rows[0] || null;
-
 }
 
 export async function updateOwnerInformation(id, newInformation) {
@@ -78,25 +73,35 @@ export async function updateOwnerInformation(id, newInformation) {
   SET first_name = $1, last_name = $2, address = $3, phone_number = $4 WHERE owner_id = $5 RETURNING *`;
 
   // parameterized large query by putting it in a array storing that in a variable
-  const values = [newInformation.first_name, newInformation.last_name, newInformation.address, newInformation.phone_number, id];
+  const values = [
+    newInformation.first_name,
+    newInformation.last_name,
+    newInformation.address,
+    newInformation.phone_number,
+    id,
+  ];
   // Use the pool object to send the query to the database (paramertized query)
   const result = await pool.query(queryText, values);
 
   // The rows property of the result object contains the retrieved record or null if not found
   return result.rows[0] || null;
-
 }
 
 export async function addNewOwner(newOwner) {
   // Query the database to insert an owner into the owners table
 
   // Define the SQL query to insert a row into owners by ID from the 'owners' table (paramertized query)
-  const queryText =` INSERT INTO owners
+  const queryText = ` INSERT INTO owners
   (first_name, last_name, address, phone_number)
   VALUES ($1,$2,$3,$4) RETURNING *`;
 
   // parameterized large query by putting it in a array storing that in a variable
-  const values = [newOwner.first_name, newOwner.last_name, newOwner.address, newOwner.phone_number];
+  const values = [
+    newOwner.first_name,
+    newOwner.last_name,
+    newOwner.address,
+    newOwner.phone_number,
+  ];
   console.log(`values=${values}`); // testing the values
 
   // Use the pool object to send the query to the database (paramertized query)
@@ -104,7 +109,6 @@ export async function addNewOwner(newOwner) {
 
   // The rows property of the result object contains the retrieved record or null if not found
   return result.rows[0] || null;
-
 }
 
 export async function getOwnerssAlphabeticalSurname() {
@@ -118,17 +122,14 @@ export async function getOwnerssAlphabeticalSurname() {
 
   // The rows property of the result object contains the retrieved records
   return result.rows;
-
 }
 
 export async function assignOwnerToDogs(ids) {
-
   const querySQLText = `UPDATE dogs SET owner_id = $1 WHERE dog_id = $2 RETURNING *`;
 
   const values = [ids.owner_id, ids.dog_id];
 
   const result = await pool.query(querySQLText, values);
 
-  return result.rows[0] || null
-
+  return result.rows[0] || null;
 }

@@ -14,7 +14,7 @@ function closeForm(formID) {
 ///new owner form
 const form = document.getElementById("owner-form");
 const resultDiv = document.getElementById("result");
-const apiUrl = "http://localhost:3000/owners";
+const apiUrl = "http://localhost:4000/owners";
 
 form.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -67,7 +67,7 @@ document.addEventListener("click", function (event) {
       console.log(formData.get("dog_id"));
       const searchdata = new URLSearchParams(formData);
       console.log(searchdata);
-      const apiUrl = `http://localhost:3000/owners/${deleteBar.value}`;
+      const apiUrl = `http://localhost:4000/owners/${deleteBar.value}`;
 
       try {
         const response = await fetch(apiUrl, {

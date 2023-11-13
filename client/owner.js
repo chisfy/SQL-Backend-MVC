@@ -58,7 +58,7 @@ function createDogCardHTML(owner) {
 
 async function retrieveOwnerDataByID() {
   // fetching the path
-  const response = await fetch(`http://localhost:3000/owners/${searchBar}`);
+  const response = await fetch(`http://localhost:4000/owners/${searchBar}`);
   //need to parse the data
   const owners = await response.json();
   // parsed data
@@ -75,7 +75,7 @@ async function retrieveOwnerDataByID() {
 
 async function retrieveOwnerDataByName() {
   // fetching the path
-  const response = await fetch(`http://localhost:3000/owners/firstname/${searchBar}`);
+  const response = await fetch(`http://localhost:4000/owners/firstname/${searchBar}`);
   //need to parse the data
   const owners = await response.json();
   // parsed data

@@ -67,7 +67,7 @@ function birthdayOfDog(dateofbirth) {
 
 async function retrieveDogDataByID() {
   // fetching the path
-  const response = await fetch(`http://localhost:3000/dogs/${searchBar}`);
+  const response = await fetch(`http://localhost:4000/dogs/${searchBar}`);
   //need to parse the data
   const dogs = await response.json();
   // parsed data
@@ -84,7 +84,7 @@ async function retrieveDogDataByID() {
 
 async function retrieveDogDataByName() {
   // fetching the path
-  const response = await fetch(`http://localhost:3000/dogs/name/${searchBar}`);
+  const response = await fetch(`http://localhost:4000/dogs/name/${searchBar}`);
   //need to parse the data
   const dogs = await response.json();
   // parsed data

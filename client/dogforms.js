@@ -14,7 +14,7 @@ function closeForm(formID) {
 ///new dog form
 const form = document.getElementById("dog-form");
 const resultDiv = document.getElementById("result");
-const apiUrl = "http://localhost:3000/dogs";
+const apiUrl = "http://localhost:4000/dogs";
 
 form.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -119,7 +119,7 @@ document.addEventListener("click", function (event) {
       console.log(formData.get("dog_id"));
       const searchdata = new URLSearchParams(formData);
       console.log(searchdata);
-      const apiUrl = `http://localhost:3000/dogs/${deleteBar.value}`;
+      const apiUrl = `http://localhost:4000/dogs/${deleteBar.value}`;
 
       try {
         const response = await fetch(apiUrl, {

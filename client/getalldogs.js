@@ -1,7 +1,8 @@
+
 // Function to retrieve and display a list of all dogs
 async function retrieveAndDisplayAllDogs() {
   // Fetch all dog data
-  const response = await fetch(`http://localhost:3000/dogs/`);
+  const response = await fetch(`http://localhost:4000/dogs/`);
 
   if (!response.ok) {
     alert("Oh no, no dog could be found try again");
@@ -38,7 +39,7 @@ document
 
 
 async function alphabeticalOrder() {
-  const response = await fetch(`http://localhost:3000/dogs/atoz`);
+  const response = await fetch(`http://localhost:4000/dogs/atoz`);
 
   if (!response.ok) {
     alert("Oh no, no dog could be found try again");
@@ -79,7 +80,7 @@ document
 
 async function getDogBySize(size) {
   const response = await fetch(
-    `http://localhost:3000/dogs/size/${size}`
+    `http://localhost:4000/dogs/size/${size}`
   );
 
   if (!response.ok) {
