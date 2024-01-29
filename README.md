@@ -4,7 +4,7 @@
 
 <p align="center">  
 It is based off a dog daycare, there are 2 tables to establish a one to many relationship between them; Dogs, Owners and in this database you can assign an Owner to a Dog with a few error handles. 
-I created a database in ElephantSQL and created an API incorporating it into request handles, this uses various HTTP methods to interact with the SQL database.
+I created a database in ElephantSQL and created an API incorporating it into request handles, this uses various HTTP methods (GET, DELETE, POST & PATCH) to interact with the SQL database.
 This has been built following the Model View Controller Pattern & Express Server router.
 </p>
 
