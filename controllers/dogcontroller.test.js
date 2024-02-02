@@ -51,7 +51,7 @@ test("testing the delete http method DEL dog by id", async () => {
         await resetDatabase();
         // selecting an id
         const id = 2;
-        //calling the get method from the request object to get the /dogs endpoint
+        //calling the delete method from the request object to get the /dogs/id endpoint
         const APIresponse = await request.delete(`/dogs/${id}`);
         //checking content of body
         console.log(APIresponse.body)
@@ -80,4 +80,31 @@ test("testing the delete http method DEL dog by id", async () => {
         //assertion to checking the status of the response
         expect(APIresponse.status).toBe(200);
         expect(APIresponse.body.status).toContain('success');
+    });
+
+
+    test("testing the delete http method DEL dog by id error handle", async () => {
+        //calling the resetDatabase function to clear the database
+        await resetDatabase();
+        // selecting an id tha doesn't exist
+        const id = 12;
+        //calling the delete method from the request object to get the /dogs/id endpoint
+        const APIresponse = await request.delete(`/dogs/${id}`);
+        //checking content of body
+        console.log(APIresponse.body)
+        //checking content of header
+        console.log(APIresponse.header)
+        //assertion to check the datatype of body
+        expect(APIresponse.body).toBeTypeOf("object");
+        //assertion to check for null data
+        expect(APIresponse.body["data"]).toBeNull();
+        //assertion to check for successfull message
+        const delMessage = APIresponse.body["msg"];
+        expect(delMessage).toBeTypeOf("string");
+        expect(delMessage).toStrictEqual('No dog matched that ID, cannot be deleted');
+        //assertion to checking the content type of the response
+        expect(APIresponse.header["content-type"]).toBe("application/json; charset=utf-8");
+        //assertion to checking the status of the response
+        expect(APIresponse.status).toBe(404);
+        expect(APIresponse.body.status).toContain('fail');
     });
