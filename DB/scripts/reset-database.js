@@ -1,7 +1,7 @@
 //import pool vareiable from connection.js to handle all our SQL queries
 import { pool } from "../connection.js";
 
-async function resetDatabase() {
+export async function resetDatabase() {
   try {
     // dropping all tables that exist
     //await pool.query(`DROP TABLE IF EXISTS dogs_to_owners`);
