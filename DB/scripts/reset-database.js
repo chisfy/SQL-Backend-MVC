@@ -93,10 +93,11 @@ export async function resetDatabase() {
     // account for error, perhaps log a message
   } catch (error) {
     console.error("Database reset failed: ", error);
-  } finally {
-    // closing the connection the pg database to prevent crashing and improve efficiency and performance of the data application.
-    await pool.end();
-  }
+  } 
+  // finally {
+  //   // closing the connection the pg database to prevent crashing and improve efficiency and performance of the data application.
+  //   await pool.end();
+  // }
   // database reset confirmation message
   console.log("Database reset complete");
 }
