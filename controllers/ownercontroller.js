@@ -95,7 +95,7 @@ export async function addNewOwner(req, res) {
   const newOwnerAdded = await ownersModel.addNewOwner(queryBody);
   
   res
-  .status(200)
+  .status(201)
   .json({
     status: "success",
     data: newOwnerAdded,

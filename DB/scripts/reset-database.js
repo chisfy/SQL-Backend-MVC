@@ -102,4 +102,4 @@ export async function resetDatabase() {
   console.log("Database reset complete");
 }
 
-await resetDatabase();
+// await resetDatabase();
