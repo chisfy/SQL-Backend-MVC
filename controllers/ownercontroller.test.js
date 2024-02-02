@@ -121,3 +121,21 @@ test("patch request error handling no owner id", async () => {
     expect(APIresponse.status).toBe(404);
     expect(APIresponse.body.status).toContain('fail');
 })
+
+test("patch request error handling no dog id", async () => {
+    // variable for dog id and owner id
+    const ownerID = 1;
+    //sending over request
+    const APIresponse = await request.patch(`/owners/?owner_id=${ownerID}`);
+    //assertion to check the datatype of body
+    expect(APIresponse.body).toBeTypeOf("object");
+    console.log(APIresponse.body);
+    //assertion to check failed message
+    expect(APIresponse.body.data).toBeTypeOf("object");
+    const failMessage = APIresponse.body.data["msg"];
+    expect(failMessage).toBeTypeOf("string");
+    expect(failMessage).toStrictEqual('No dog ID stated; needs both Owner ID and Dog iD to assign ownership');
+    //assertion to check response of error 
+    expect(APIresponse.status).toBe(404);
+    expect(APIresponse.body.status).toContain('fail');
+})
