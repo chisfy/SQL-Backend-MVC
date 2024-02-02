@@ -53,3 +53,12 @@ test("tesing POST method on owner db", async () => {
     expect(APIresponse.body.status).toContain('success');
     expect(APIresponse.status).toBe(201);
 })
+
+test("tesing Patch method on owner db assign owner to dog", async () => {
+    // variable for dog id and owner id
+    const dogID = 2;
+    const ownerID = 1;
+    //sending over request
+    const APIresponse = await request.patch(`/owners/?dog_id=${dogID}&owner_id=${ownerID}`);
+    expect(APIresponse.status).toBe(200);
+});
