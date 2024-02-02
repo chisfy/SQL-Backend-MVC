@@ -110,9 +110,9 @@ export async function getOwnersAlphabeticalSurname(req, res) {
 }
 
 export async function assignOwnerToDogs(req, res) {
-  const { owner_id, dog_id } = req.query
+  const { dog_id, owner_id } = req.query
   console.log(req.query);
-  const assignID = await ownersModel.assignOwnerToDogs({owner_id,dog_id});
+  const assignID = await ownersModel.assignOwnerToDogs({dog_id,owner_id});
 
   if (!owner_id) {
     return res.status(404).json({
