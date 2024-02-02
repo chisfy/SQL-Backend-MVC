@@ -15,24 +15,28 @@ test("fully testing GET /dogs - checking content and type", async () => {
     const APIresponse = await request.get("/dogs");
     // checking content of body
     console.log(APIresponse.body);
+    // checking content of header
     console.log(APIresponse.header);
     // checking where array is held
     console.log(APIresponse.body["data"]);
     const dogArray = APIresponse.body["data"];
 
-    //asserting 
-    expect(dogArray[0]).toMatchObject({
-        dog_id: expect.any(Number),
-        name: expect.any(String),
-        age: expect.any(Number),
-        date_of_birth: expect.any(String),
-        size: expect.any(String),
-        breed: expect.any(String),
-        owner_id: null
-      });
-
+    //asserting the structure of the array
+    dogArray.forEach(dog => {
+        expect(dog).toMatchObject({
+            dog_id: expect.any(Number),
+            name: expect.any(String),
+            age: expect.any(Number),
+            date_of_birth: expect.any(String),
+            size: expect.any(String),
+            breed: expect.any(String),
+            owner_id: null
+          });
+    });
     // assertion to check data is an array
     expect(dogArray).toHaveLength(10);
+    // assertion to check data of apiresponse is an array
+    expect(Array.isArray(dogArray)).toStrictEqual(true);
     //assertion to check the datatype of body
     expect(APIresponse.body).toBeTypeOf("object");
     //assertion to checking the content type of the response
