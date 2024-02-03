@@ -26,8 +26,10 @@ This has been built following the Model View Controller Pattern & Express Server
 &nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;
 <a href="https://www.thunderclient.com/"><img src="https://github.com/chisfy/SQL-Backend-MVC/assets/137444313/f983f25e-28bc-49e4-b3d8-1191ad96c148" alt="thunderclient_logo" height="100" width="100"/></a>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
 <a href="https://vitest.dev/"><img height="100" width="100" alt="145112184-a9ff6727-661c-439d-9ada-963124a281f7" src="https://github.com/chisfy/SQL-Backend-MVC/assets/137444313/9fdecf5a-6e8d-4bf6-9267-1573c23d0362"></a>
-
 </section>
   
 ## 🏫 Lessons Learned
@@ -54,3 +56,11 @@ There is the opportunity to create a front end!
 </p> 
 
 ## 🎥 Demo
+
+<section align="center">
+<p>API Tests</p>
+<img alt="screenshotofapirequesttests" src="https://github.com/chisfy/SQL-Backend-MVC/assets/137444313/fce6bdb9-b726-4d4a-a973-de83b860c826">
+<p>Server In Action!</p>
+<video src="https://github.com/chisfy/SQL-Backend-MVC/assets/137444313/4091e04b-747e-4960-bae7-090a7abf9137"/>
+</section>
+
