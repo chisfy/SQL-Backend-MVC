@@ -4,7 +4,7 @@
 
 <p align="center">  
 It is based off a dog daycare, there are 2 tables to establish a one to many relationship between them; Dogs, Owners and in this database you can assign an Owner to a Dog with a few error handles. 
-I created a database in ElephantSQL and created an API incorporating it into request handles, this uses various HTTP methods (GET, DELETE, POST & PATCH) to interact with the SQL database.
+I created a database in ElephantSQL and created an API incorporating it into request handles, this uses various HTTP methods (GET, DELETE, POST & PATCH) to interact with the SQL database, the HTTP methods have also been tested, to ensure they work as intended.
 This has been built following the Model View Controller Pattern & Express Server router.
 </p>
 
@@ -26,6 +26,8 @@ This has been built following the Model View Controller Pattern & Express Server
 &nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;
 <a href="https://www.thunderclient.com/"><img src="https://github.com/chisfy/SQL-Backend-MVC/assets/137444313/f983f25e-28bc-49e4-b3d8-1191ad96c148" alt="thunderclient_logo" height="100" width="100"/></a>
+<a href="https://vitest.dev/"><img height="100" width="100" alt="145112184-a9ff6727-661c-439d-9ada-963124a281f7" src="https://github.com/chisfy/SQL-Backend-MVC/assets/137444313/9fdecf5a-6e8d-4bf6-9267-1573c23d0362"></a>
+
 </section>
   
 ## 🏫 Lessons Learned
@@ -35,6 +37,7 @@ This has been built following the Model View Controller Pattern & Express Server
 - Error handling, it's been a good introduction into how handle errors, what checks you can put to ensure requests are being handled correctly and the appropriate response for when there is an error. <br>
 - Using Express and how it's used to run a server. <br>
 - Familiarising myself with the process of API requests, how to send an object over and how to handle server crashes.
+- Testing, knowledge of how to structure tests, what assertions to make and improved understanding of how my server works and runs!
 </p>
 
 ## 💭 Reflections
